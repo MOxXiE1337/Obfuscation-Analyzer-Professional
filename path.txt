@@ -1,0 +1,3 @@
+output path: $(SolutionDir)out\bin\$(Platform)\
+immediate path: $(SolutionDir)tmp\$(Platform)\$(ProjectName)\
+import lib path: $(SolutionDir)out\lib\$(Platform)\$(TargetName).lib
