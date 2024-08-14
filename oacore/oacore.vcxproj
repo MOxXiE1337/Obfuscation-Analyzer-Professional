@@ -77,13 +77,13 @@
     <IncludePath>$(ProjectDir)ObfuscationAnalyzer;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir);$(ProjectDir)External;$(SolutionDir)zydis;$(SolutionDir)tinyxml2;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)oacore;$(SolutionDir)zydis;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)out\bin\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(ProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)out\lib\$(Platform);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir);$(ProjectDir)External;$(SolutionDir)zydis;$(SolutionDir)tinyxml2;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)oacore;$(SolutionDir)zydis;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)out\bin\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(ProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)out\lib\$(Platform);$(LibraryPath)</LibraryPath>
@@ -122,16 +122,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;OACORE_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);TINYXML2_IMPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;OACORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <ImportLibrary>$(SolutionDir)out\lib\$(Platform)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>tinyxml2.lib;zydis.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zydis.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,9 +139,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;OACORE_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);TINYXML2_IMPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;OACORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,30 +149,28 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <ImportLibrary>$(SolutionDir)out\lib\$(Platform)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>tinyxml2.lib;zydis.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zydis.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="External\cpp-base64\cpp-base64.h" />
-    <ClInclude Include="oacore\Common\Database.h" />
+    <ClInclude Include="oacore\Common\Thread.h" />
     <ClInclude Include="oacore\Impl\CDisassembler.h" />
+    <ClInclude Include="oacore\Impl\CPELoader.h" />
     <ClInclude Include="oacore\Impl\CSimulator.h" />
+    <ClInclude Include="oacore\Common\File.h" />
     <ClInclude Include="oacore\Impl\CAnalyzer.h" />
     <ClInclude Include="oacore\Interfaces\IAnalyzer.h" />
     <ClInclude Include="oacore\Interfaces\IDisassembler.h" />
+    <ClInclude Include="oacore\Interfaces\IPELoader.h" />
     <ClInclude Include="oacore\Interfaces\ISimulator.h" />
     <ClInclude Include="oacore\oacore.h" />
-    <ClInclude Include="oacore\Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="External\cpp-base64\cpp-base64.cpp" />
-    <ClCompile Include="oacore\Common\Database.cpp" />
-    <ClCompile Include="oacore\Common\DatabaseNode.cpp" />
     <ClCompile Include="oacore\Impl\CAnalyzer.cpp" />
     <ClCompile Include="oacore\Impl\CDisassembler.cpp" />
     <ClCompile Include="oacore\oacore.cpp" />
-    <ClCompile Include="oacore\Utils\Base64.cpp" />
-    <ClCompile Include="oacore\Utils\String.cpp" />
+    <ClCompile Include="oacore\Impl\CPELoader.cpp" />
+    <ClCompile Include="oacore\Common\File.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

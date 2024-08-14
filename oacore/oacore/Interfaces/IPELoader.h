@@ -31,13 +31,6 @@ namespace oacore
 		virtual CONST PIMAGE_SECTION_HEADER  GetSectionHeaders() = 0;
 		virtual SIZE_T                       GetNumberOfSections() = 0;
 	public:
-		// Normally u shouldn't call these interal functions, for loading database
-		virtual VOID                         _SetImagebase(DWORD64 imagebase) = 0;
-		virtual VOID                         _SetImagesize(DWORD64 imagesize) = 0;
-		virtual VOID 			             _SetEntrypoint(DWORD64 rva) = 0;
-		virtual VOID                         _SetSectionHeaders(CONST PIMAGE_SECTION_HEADER* headers) = 0;
-		virtual VOID                         _SetNumberOfSections(SIZE_T number) = 0;
-	public:
 		virtual PE_LOAD_STATUS               LoadFile(CONST _TCHAR* path) = 0;
 	};
 }

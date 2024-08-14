@@ -1,5 +1,5 @@
 #pragma once
-#include "oacore/oacore.h"
+#include "oacore.h"
 
 namespace oacore
 {

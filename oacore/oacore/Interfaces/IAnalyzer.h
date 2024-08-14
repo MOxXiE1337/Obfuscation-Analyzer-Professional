@@ -1,7 +1,8 @@
 #pragma once
-#include "oacore/oacore.h"
-#include "oacore/Interfaces/IDisassembler.h"
-#include "oacore/Common/Database.h"
+#include "oacore.h"
+
+#include "IPELoader.h"
+#include "IDisassembler.h"
 
 namespace oacore
 {
@@ -17,17 +18,14 @@ namespace oacore
 	class IAnalyzer
 	{
 	public:
-		virtual bool           IsLoaded() = 0;
-
+		virtual IPELoader* GetPELoader() = 0;
 		virtual IDisassembler* GetDisassembler() = 0;
-		virtual Database*      GetDatabase() = 0;
 
-		virtual uintptr_t      GetImagebase() = 0;
-		virtual void           RebaseProgram(uintptr_t imagebase) = 0;
+		virtual DWORD64 GetImagebase() = 0;
+		virtual VOID    RebaseProgram(DWORD64 imagebase) = 0;
 
-		virtual ANALYZER_LOAD_STATUS LoadFile(const std::string& path) = 0;
+		virtual ANALYZER_LOAD_STATUS LoadFile(CONST _TCHAR* path) = 0;
 	};
 
 	OACORE_API IAnalyzer* CreateAnalyzer();
-	OACORE_API void       CloseAnalyzer(IAnalyzer*& analyzer);
 }

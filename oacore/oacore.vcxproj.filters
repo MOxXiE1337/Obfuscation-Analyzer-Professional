@@ -21,7 +21,16 @@
     <ClInclude Include="oacore\Interfaces\ISimulator.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="oacore\Interfaces\IPELoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="oacore\Impl\CSimulator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oacore\Impl\CPELoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oacore\Common\File.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oacore\Interfaces\IAnalyzer.h">
@@ -30,23 +39,23 @@
     <ClInclude Include="oacore\Impl\CAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="oacore\Common\Thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="oacore\Interfaces\IDisassembler.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oacore\Impl\CDisassembler.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Common\Database.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="oacore\Utils\Utils.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="External\cpp-base64\cpp-base64.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="oacore\Impl\CPELoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="oacore\Common\File.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="oacore\oacore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -54,21 +63,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="oacore\Impl\CDisassembler.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oacore\Common\DatabaseNode.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oacore\Common\Database.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="External\cpp-base64\cpp-base64.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oacore\Utils\Base64.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oacore\Utils\String.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

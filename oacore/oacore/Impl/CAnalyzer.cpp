@@ -4,12 +4,12 @@ namespace oacore
 {
 	CAnalyzer::CAnalyzer()
 	{
-		m_loaded = false;
+
 	}
 
-	bool CAnalyzer::IsLoaded()
+	IPELoader* CAnalyzer::GetPELoader()
 	{
-		return m_loaded;
+		return &m_peLoader;
 	}
 
 	IDisassembler* CAnalyzer::GetDisassembler()
@@ -17,28 +17,19 @@ namespace oacore
 		return &m_disassembler;
 	}
 
-	Database* CAnalyzer::GetDatabase()
-	{
-		return &m_database;
-	}
-
-	uintptr_t CAnalyzer::GetImagebase()
+	DWORD64 CAnalyzer::GetImagebase()
 	{
 		return m_rebasedImagebase;
 	}
 
-	void CAnalyzer::RebaseProgram(uintptr_t imagebase)
+	VOID CAnalyzer::RebaseProgram(DWORD64 imagebase)
 	{
 		m_rebasedImagebase = imagebase;
 	}
 
-	ANALYZER_LOAD_STATUS CAnalyzer::LoadFile(const std::string& path)
+	ANALYZER_LOAD_STATUS CAnalyzer::LoadFile(CONST _TCHAR* path)
 	{
 		ANALYZER_LOAD_STATUS status = ANALYZER_LOAD_SUCCESS;
-
-		m_loaded = true;
-
-		/*
 		PE_LOAD_STATUS peLoadStatus = m_peLoader.LoadFile(path);
 
 		if (peLoadStatus != PE_LOAD_SUCCESS)
@@ -56,7 +47,7 @@ namespace oacore
 			}
 		}
 
-		RebaseProgram(m_peLoader.GetOptionalHeader()->ImageBase); */
+		RebaseProgram(m_peLoader.GetOptionalHeader()->ImageBase);
 
 		return status;
 	}
@@ -64,15 +55,6 @@ namespace oacore
 	OACORE_API IAnalyzer* oacore::CreateAnalyzer()
 	{
 		return new CAnalyzer{};
-	}
-
-	OACORE_API VOID CloseAnalyzer(IAnalyzer*& analyzer)
-	{
-		if (analyzer)
-		{
-			delete analyzer;
-			analyzer = nullptr;
-		}
 	}
 }
 

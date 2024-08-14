@@ -1,5 +1,5 @@
 #pragma once
-#include "oacore/Interfaces/IDisassembler.h"
+#include "Interfaces/IDisassembler.h"
 
 #include "zydis/Zydis.h"
 

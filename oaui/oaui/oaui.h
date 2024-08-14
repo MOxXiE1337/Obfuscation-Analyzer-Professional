@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <unordered_map>
+#include <codecvt>
 
 #include <Windows.h>
 
