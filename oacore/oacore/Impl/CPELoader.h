@@ -1,5 +1,4 @@
 #pragma once
-#include "Common/File.h"
 
 #include "Interfaces/IPELoader.h"
 
@@ -10,20 +9,18 @@ namespace oacore
 	class CPELoader : public IPELoader
 	{
 	private:
-		CONST _TCHAR*         m_filePath;
+		std::string           m_filePath;
 
-		DWORD64               m_imagebase;
-		SIZE_T                m_imagesize;
+		uintptr_t             m_imagebase;
+		uintptr_t             m_imagesize;
 		DWORD64               m_oepOffset;
 		
 		IMAGE_DOS_HEADER      m_dosHeader;
 		IMAGE_NT_HEADERS64    m_ntHeaders;
 		PIMAGE_SECTION_HEADER m_sectionHeaders;
-		SIZE_T                m_numberOfSections;
+		size_t                m_numberOfSections;
 
 	private:
-		PE_LOAD_STATUS              CopySections(File& file);
-		PE_LOAD_STATUS              MapFileToMemory(File& file);
 
 	public:
 		~CPELoader();
@@ -39,6 +36,15 @@ namespace oacore
 		CONST PIMAGE_OPTIONAL_HEADER GetOptionalHeader();
 		CONST PIMAGE_SECTION_HEADER  GetSectionHeaders();
 		SIZE_T                       GetNumberOfSections();
+
+
+	public:
+		VOID                         _SetImagebase(DWORD64 imagebase);
+		VOID                         _SetImagesize(DWORD64 imagesize);
+		VOID 			             _SetEntrypoint(DWORD64 rva);
+		VOID                         _SetSectionHeaders(CONST PIMAGE_SECTION_HEADER* headers);
+		VOID                         _SetNumberOfSections(SIZE_T number);
+
 	public:
 		PE_LOAD_STATUS               LoadFile(CONST _TCHAR* path);
 		

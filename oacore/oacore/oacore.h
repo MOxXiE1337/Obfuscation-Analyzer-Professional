@@ -1,10 +1,10 @@
 #pragma once
 
-#include <cstdio>
-#include <cassert>
+#include <regex>
+#include <string>
+#include <sstream>
 
 #include <Windows.h>
-#include <tchar.h>
 
 #ifdef OACORE_EXPORTS
 #define OACORE_API __declspec(dllexport)

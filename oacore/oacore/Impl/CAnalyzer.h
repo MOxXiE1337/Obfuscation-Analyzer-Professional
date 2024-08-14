@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Interfaces/IAnalyzer.h"
+#include "oacore/Interfaces/IAnalyzer.h"
 
-#include "CPELoader.h"
 #include "CDisassembler.h"
 
 namespace oacore
@@ -10,19 +9,26 @@ namespace oacore
 	class CAnalyzer : public IAnalyzer
 	{
 	private:
-		CPELoader m_peLoader;
+		bool m_loaded;
+		std::string m_filePath;
+
+		Database m_database;
+
 		CDisassembler m_disassembler;
 
-		DWORD64 m_rebasedImagebase;
+		uintptr_t m_rebasedImagebase;
 	public:
 		CAnalyzer();
 
-		IPELoader* GetPELoader();
+		bool           IsLoaded();
+
 		IDisassembler* GetDisassembler();
+	
+		Database*      GetDatabase();
 
-		DWORD64 GetImagebase();
-		VOID    RebaseProgram(DWORD64 imagebase);
+		uintptr_t      GetImagebase();
+		void           RebaseProgram(uintptr_t imagebase);
 
-		ANALYZER_LOAD_STATUS LoadFile(CONST _TCHAR* path);
+		ANALYZER_LOAD_STATUS LoadFile(const std::string& path);
 	};
 }
