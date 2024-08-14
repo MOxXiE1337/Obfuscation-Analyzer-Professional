@@ -133,6 +133,30 @@ namespace oacore
         return m_numberOfSections;
     }
 
+    VOID CPELoader::_SetImagebase(DWORD64 imagebase)
+    {
+        m_imagebase = imagebase;
+    }
+
+    VOID CPELoader::_SetImagesize(DWORD64 imagesize)
+    {
+        m_imagebase = imagesize;
+    }
+
+    VOID CPELoader::_SetEntrypoint(DWORD64 rva)
+    {
+
+    }
+
+    VOID CPELoader::_SetSectionHeaders(CONST PIMAGE_SECTION_HEADER* headers)
+    {
+
+    }
+
+    VOID CPELoader::_SetNumberOfSections(SIZE_T number)
+    {
+
+    }
 
     PE_LOAD_STATUS CPELoader::LoadFile(CONST _TCHAR* path)
     {
