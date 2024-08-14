@@ -71,14 +71,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)oacore\oacore;$(SolutionDir)tinyxml2;$(SolutionDir)imgui;$(ProjectDir)oaui;$(ProjectDir)cpp-base64;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)oacore;$(SolutionDir)imgui;$(ProjectDir);$(ProjectDir)cpp-base64;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)out\lib\$(Platform);$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)out\bin\$(Platform)\</OutDir>
     <TargetName>Obfuscation Analyzer Professional</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)oacore\oacore;$(SolutionDir)tinyxml2;$(SolutionDir)imgui;$(ProjectDir)oaui;$(ProjectDir)cpp-base64;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)oacore;$(SolutionDir)imgui;$(ProjectDir);$(ProjectDir)cpp-base64;$(SolutionDir)tinyxml2;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)out\lib\$(Platform);$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)out\bin\$(Platform)\</OutDir>
@@ -116,14 +116,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);TINYXML2_IMPORT;_CRT_SECURE_NO_WARNINGS;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>winmm.lib;oacore.lib;imgui.lib;tinyxml2.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;oacore.lib;imgui.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -136,7 +136,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);TINYXML2_IMPORT;_CRT_SECURE_NO_WARNINGS;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -153,36 +153,28 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cpp-base64\cpp-base64.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="oaui\Config\Config.cpp" />
-    <ClCompile Include="oaui\Core\Database\Database.cpp" />
-    <ClCompile Include="oaui\Core\Loader\Loader.cpp" />
-    <ClCompile Include="oaui\State\DefaultConfigGen.cpp" />
-    <ClCompile Include="oaui\State\State.cpp" />
-    <ClCompile Include="oaui\UI\DisassemblerWindow.cpp" />
-    <ClCompile Include="oaui\UI\Dockspace.cpp" />
-    <ClCompile Include="oaui\UI\LogWindow.cpp" />
-    <ClCompile Include="oaui\UI\MenuBar.cpp" />
-    <ClCompile Include="oaui\UI\NotepadWindow.cpp" />
-    <ClCompile Include="oaui\UI\SaveWindow.cpp" />
-    <ClCompile Include="oaui\UI\SectionsWindow.cpp" />
-    <ClCompile Include="oaui\UI\SettingsWindow.cpp" />
-    <ClCompile Include="oaui\UI\ToolBar.cpp" />
-    <ClCompile Include="oaui\UI\UI.cpp" />
-    <ClCompile Include="oaui\Utils\Base64.cpp" />
-    <ClCompile Include="oaui\Utils\StringOperations.cpp" />
+    <ClCompile Include="oaui\Core\State\State.cpp" />
+    <ClCompile Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.cpp" />
+    <ClCompile Include="oaui\Core\UI\UI.cpp" />
+    <ClCompile Include="oaui\Core\UI\Window.cpp" />
+    <ClCompile Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.cpp" />
+    <ClCompile Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.cpp" />
+    <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWIndow.cpp" />
     <ClCompile Include="oaui\Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cpp-base64\cpp-base64.h" />
-    <ClInclude Include="oaui\Config\Config.h" />
-    <ClInclude Include="oaui\Core\Database\Database.h" />
-    <ClInclude Include="oaui\Core\Loader\Loader.h" />
+    <ClInclude Include="oaui\Core\State\State.h" />
+    <ClInclude Include="oaui\Core\UI\Constants.h" />
+    <ClInclude Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.h" />
+    <ClInclude Include="oaui\Core\UI\UI.h" />
+    <ClInclude Include="oaui\Core\UI\Window.h" />
+    <ClInclude Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.h" />
+    <ClInclude Include="oaui\Core\UI\MenuBar.h" />
+    <ClInclude Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.h" />
+    <ClInclude Include="oaui\Core\UI\Windows\SavingWindow\SavingWindow.h" />
     <ClInclude Include="oaui\oaui.h" />
-    <ClInclude Include="oaui\Resources\iconfont.h" />
-    <ClInclude Include="oaui\State\State.h" />
-    <ClInclude Include="oaui\UI\UI.h" />
+    <ClInclude Include="oaui\Resources\IconFont.h" />
     <ClInclude Include="oaui\Utils\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

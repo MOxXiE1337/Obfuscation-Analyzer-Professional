@@ -18,90 +18,66 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\UI\UI.cpp">
+    <ClCompile Include="oaui\Core\UI\UI.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\UI\Dockspace.cpp">
+    <ClCompile Include="oaui\Core\UI\Window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\UI\MenuBar.cpp">
+    <ClCompile Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\Config\Config.cpp">
+    <ClCompile Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\Utils\StringOperations.cpp">
+    <ClCompile Include="oaui\Core\State\State.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\State\State.cpp">
+    <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWIndow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Utils\Utils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\State\DefaultConfigGen.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\UI\ToolBar.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\UI\SettingsWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\UI\LogWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\UI\NotepadWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\Core\Loader\Loader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\UI\SectionsWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\UI\DisassemblerWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\UI\SaveWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\Core\Database\Database.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="oaui\Utils\Base64.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="cpp-base64\cpp-base64.cpp">
+    <ClCompile Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="oaui\UI\UI.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="oaui\oaui.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oaui\Config\Config.h">
+    <ClInclude Include="oaui\Resources\IconFont.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\State\State.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\UI.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\Window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\MenuBar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\Windows\SavingWindow\SavingWindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\Constants.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Utils\Utils.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oaui\State\State.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="oaui\Resources\iconfont.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="oaui\Core\Loader\Loader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="oaui\Core\Database\Database.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp-base64\cpp-base64.h">
+    <ClInclude Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

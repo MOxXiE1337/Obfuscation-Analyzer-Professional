@@ -4,8 +4,8 @@ namespace oaui
 {
 	namespace Resources
 	{
-        static const unsigned int iconfont_compressed_size = 39142;
-        static const unsigned int iconfont_compressed_data[39144 / 4] =
+        static const unsigned int IconFontCompressedDataSize = 39142;
+        static const unsigned int IconFontCompressedData[39144 / 4] =
         {
             0x0000bc57, 0x00000000, 0xfcdb0000, 0x00000400, 0x00010037, 0x000b0000, 0x00030080, 0x55534730, 0x258b2042, 0x0100007a, 0x28158238, 0x2f534f54,
             0x4b2e3c32, 0x200f826f, 0x3b0f828c, 0x616d6360, 0xdfa99370, 0x070000a3, 0x14000020, 0x796c6762, 0xeeaf5c66, 0x1e0000f7, 0xaa290f82, 0x6165681c,

@@ -21,7 +21,7 @@
     <ClInclude Include="oacore\Interfaces\ISimulator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Impl\CSimulator.h">
+    <ClInclude Include="oacore\Interfaces\CSimulator.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oacore\Interfaces\IAnalyzer.h">

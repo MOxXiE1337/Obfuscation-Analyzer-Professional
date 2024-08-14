@@ -12,12 +12,9 @@
 #include <d3d11.h>
 #include <tchar.h>
 
+#include "oaui/Core/State/State.h"
+
 #include <iostream>
-
-#include "State/State.h"
-#include "UI/UI.h"
-#include "Core/Loader/Loader.h"
-
 
 // Data
 static ID3D11Device* g_pd3dDevice = nullptr;
@@ -26,6 +23,8 @@ static IDXGISwapChain* g_pSwapChain = nullptr;
 static bool                     g_SwapChainOccluded = false;
 static UINT                     g_ResizeWidth = 0, g_ResizeHeight = 0;
 static ID3D11RenderTargetView* g_mainRenderTargetView = nullptr;
+
+oaui::State* state;
 
 // Forward declarations of helper functions
 bool CreateDeviceD3D(HWND hWnd);
@@ -36,6 +35,8 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 int main(int, char**)
 {
+    state = new oaui::State{};
+
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
     WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, L"oaui Class", nullptr };
@@ -65,11 +66,12 @@ int main(int, char**)
     io.ConfigViewportsNoAutoMerge = true;
     io.ConfigDockingTransparentPayload = true;
     
-    if (!oaui::State::GetInstance().Init(hwnd))
+    if (!state->Initialize(hwnd))
         return -1;
 
-    if (!oaui::UI::GetInstance().Init(hwnd))
-        return -1;
+    state->GetUI()->Log("Log test");
+    state->GetUI()->Warn("Warn test");
+    state->GetUI()->Error("Error test");
 
     // Setup Platform/Renderer backends
     ImGui_ImplWin32_Init(hwnd);
@@ -135,7 +137,7 @@ int main(int, char**)
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        oaui::UI::GetInstance().Render();
+        state->GetUI()->Render();
 
        ImGui::ShowDemoWindow();
 
@@ -164,9 +166,7 @@ int main(int, char**)
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
 
-    oaui::UI::GetInstance().Shutdown();
-    oaui::State::GetInstance().Shutdown();
-   
+    state->Shutdown();
 
     CleanupDeviceD3D();
     ::DestroyWindow(hwnd);
@@ -246,8 +246,11 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    oaui::UI& ui = oaui::UI::GetInstance();
-    oaui::Loader& loader = oaui::Loader::GetInstance();
+    oaui::UI* ui = state->GetUI();
+    oacore::IAnalyzer* analyzer = state->GetAnalyzer();
+    oaui::Window* saveWindow = ui->GetWindow(oaui::WINDOW_SAVING_WINDOW);
+
+    //oaui::Loader& loader = oaui::Loader::GetInstance();
 
     if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
         return true;
@@ -269,31 +272,35 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
         DragQueryFileA(drop, 0, filePath, MAX_PATH);
 
-        if (oaui::Loader::GetInstance().IsLoaded())
+        if (analyzer)
         {
-            oaui::UI::GetInstance().ShowSaveWindow();
-            oaui::UI::GetInstance().DelayLoad(filePath);
+            if (analyzer->IsLoaded())
+            {
+                saveWindow->Show();
+                saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_LOAD_DRAGGED_FILE, true);
+                saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_DRAGGED_FILE_PATH, std::string(filePath));
+            }
+            else
+            {
+                state->LoadFile(filePath);
+            }
         }
-        else
-        {
-            oaui::Loader::GetInstance().LoadFile(filePath);
-        }
-        
+
         DragFinish(drop);   
 
-        InvalidateRect(hWnd, NULL, TRUE);
+        InvalidateRect(hWnd, NULL, TRUE); 
         break;
     }
     case WM_CLOSE:
-        if (loader.IsLoaded() && !ui.IsExiting())
+        if (state->GetAnalyzer()->IsLoaded() && !saveWindow->GetOptionValue<bool>(oaui::Constants::SAVINGWINDOW_EXITING))
         {
-            ui.ShouldOpenNewFile(false);
-            ui.ShouldExit();
-            ui.ShowSaveWindow();
+            saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_OPEN_NEW_FILE, false);
+            saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_SHOULD_EXIT, true);
+            saveWindow->Show();
             return 0;
         }
         
-        if (ui.IsExiting())
+        if (saveWindow->GetOptionValue<bool>(oaui::Constants::SAVINGWINDOW_EXITING))
             return 0;
 
         return DefWindowProc(hWnd, msg, wParam, lParam);
