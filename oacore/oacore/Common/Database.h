@@ -17,7 +17,7 @@ namespace oacore
 		BinaryData(const T& obj)
 		{
 			Size = sizeof(T);
-			Data = (void*)&obj;
+			Data = reinterpret_cast<void*>(&obj);
 			ShouldFree = false;
 		}
 
