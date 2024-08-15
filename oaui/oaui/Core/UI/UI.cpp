@@ -3,9 +3,6 @@
 #include "UI.h"
 
 #include "oaui/Resources/Iconfont.h"
-#include "oaui/Resources/InfomationIcon.h"
-#include "oaui/Resources/WarningIcon.h"
-#include "oaui/Resources/ErrorIcon.h"
 
 #include "MenuBar/MainMenuBar/MainMenuBar.h"
 #include "Windows/DockspaceWindow/DockspaceWindow.h"

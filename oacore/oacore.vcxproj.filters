@@ -24,13 +24,13 @@
     <ClInclude Include="oacore\Interfaces\IAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Impl\CAnalyzer.h">
+    <ClInclude Include="oacore\Implementation\CAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oacore\Interfaces\IDisassembler.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Impl\CDisassembler.h">
+    <ClInclude Include="oacore\Implementation\CDisassembler.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oacore\Common\Database.h">
@@ -45,7 +45,7 @@
     <ClInclude Include="oacore\Interfaces\IPELoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Impl\CPELoader.h">
+    <ClInclude Include="oacore\Implementation\CPELoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,10 +53,10 @@
     <ClCompile Include="oacore\oacore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oacore\Impl\CAnalyzer.cpp">
+    <ClCompile Include="oacore\Implementation\CAnalyzer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oacore\Impl\CDisassembler.cpp">
+    <ClCompile Include="oacore\Implementation\CDisassembler.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="oacore\Common\DatabaseNode.cpp">
@@ -74,7 +74,7 @@
     <ClCompile Include="oacore\Utils\String.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oacore\Impl\CPELoader.cpp">
+    <ClCompile Include="oacore\Implementation\CPELoader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -157,9 +157,9 @@
   <ItemGroup>
     <ClInclude Include="External\cpp-base64\cpp-base64.h" />
     <ClInclude Include="oacore\Common\Database.h" />
-    <ClInclude Include="oacore\Impl\CDisassembler.h" />
-    <ClInclude Include="oacore\Impl\CPELoader.h" />
-    <ClInclude Include="oacore\Impl\CAnalyzer.h" />
+    <ClInclude Include="oacore\Implementation\CDisassembler.h" />
+    <ClInclude Include="oacore\Implementation\CPELoader.h" />
+    <ClInclude Include="oacore\Implementation\CAnalyzer.h" />
     <ClInclude Include="oacore\Interfaces\IAnalyzer.h" />
     <ClInclude Include="oacore\Interfaces\IDisassembler.h" />
     <ClInclude Include="oacore\Interfaces\IPELoader.h" />
@@ -171,9 +171,9 @@
     <ClCompile Include="External\cpp-base64\cpp-base64.cpp" />
     <ClCompile Include="oacore\Common\Database.cpp" />
     <ClCompile Include="oacore\Common\DatabaseNode.cpp" />
-    <ClCompile Include="oacore\Impl\CAnalyzer.cpp" />
-    <ClCompile Include="oacore\Impl\CDisassembler.cpp" />
-    <ClCompile Include="oacore\Impl\CPELoader.cpp" />
+    <ClCompile Include="oacore\Implementation\CAnalyzer.cpp" />
+    <ClCompile Include="oacore\Implementation\CDisassembler.cpp" />
+    <ClCompile Include="oacore\Implementation\CPELoader.cpp" />
     <ClCompile Include="oacore\oacore.cpp" />
     <ClCompile Include="oacore\Utils\Base64.cpp" />
     <ClCompile Include="oacore\Utils\String.cpp" />

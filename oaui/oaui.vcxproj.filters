@@ -33,7 +33,7 @@
     <ClCompile Include="oaui\Core\State\State.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWIndow.cpp">
+    <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Utils\Utils.cpp">

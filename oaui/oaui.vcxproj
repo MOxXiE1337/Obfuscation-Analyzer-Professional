@@ -164,7 +164,7 @@
     <ClCompile Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.cpp" />
-    <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWIndow.cpp" />
+    <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\TestingWindow\TestingWindow.cpp" />
     <ClCompile Include="oaui\Utils\Utils.cpp" />
   </ItemGroup>
