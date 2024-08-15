@@ -36,7 +36,7 @@ namespace oaui
 
                     if (analyzer->IsLoaded())
                     {
-                        SavingWindow* saveWindow = dynamic_cast<SavingWindow*>(ui->GetWindow(WINDOW_SAVING_WINDOW));
+                        SavingWindow* saveWindow = reinterpret_cast<SavingWindow*>(ui->GetWindow(WINDOW_SAVING_WINDOW));
                         saveWindow->Show();
                         saveWindow->OpenOpenFileDialog();
                     }

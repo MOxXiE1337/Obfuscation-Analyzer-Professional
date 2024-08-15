@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma once
 #include "oaui/Core/UI/Window.h"
 #include "oaui/Core/UI/UI.h"
 

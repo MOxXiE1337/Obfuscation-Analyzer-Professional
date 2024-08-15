@@ -249,7 +249,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     oaui::UI* ui = state->GetUI();
     oacore::IAnalyzer* analyzer = state->GetAnalyzer();
-    oaui::SavingWindow* savingWindow = dynamic_cast<oaui::SavingWindow*>(ui->GetWindow(oaui::WINDOW_SAVING_WINDOW));
+    oaui::SavingWindow* savingWindow = reinterpret_cast<oaui::SavingWindow*>(ui->GetWindow(oaui::WINDOW_SAVING_WINDOW));
 
     if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
         return true;

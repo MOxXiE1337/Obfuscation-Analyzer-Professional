@@ -186,7 +186,7 @@ namespace oaui
 		
 		va_list ap;
 		va_start(ap, text);
-		dynamic_cast<OutputWindow*>(m_outputWindow)->OutputMessage(ImGui::GetStyleColorVec4(ImGuiCol_Text), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(ImGui::GetStyleColorVec4(ImGuiCol_Text), text, ap);
 		va_end(ap);
 	}
 
@@ -194,7 +194,7 @@ namespace oaui
 	{
 		va_list ap;
 		va_start(ap, text);
-		dynamic_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 138, 37, 255), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 138, 37, 255), text, ap);
 		va_end(ap);
 	}
 
@@ -202,7 +202,7 @@ namespace oaui
 	{
 		va_list ap;
 		va_start(ap, text);
-		dynamic_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 0, 0, 255), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 0, 0, 255), text, ap);
 		va_end(ap);
 	}
 
