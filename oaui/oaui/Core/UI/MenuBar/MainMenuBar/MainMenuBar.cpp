@@ -80,9 +80,9 @@ namespace oaui
                     }
                     ImGui::Separator(); */
 
-                    if (ImGui::MenuItem(u8"\uE7E8 Database viewer", nullptr, ui->GetWindow(DATATBASE_VIWER_WINDOW)->IsShowed(), analyzer->IsLoaded()))
+                    if (ImGui::MenuItem(u8"\uE7E8 Database viewer", nullptr, ui->GetWindow(DATABASE_VIEWER_WINDOW)->IsShowed(), analyzer->IsLoaded()))
                     {
-                        ui->GetWindow(DATATBASE_VIWER_WINDOW)->Show();
+                        ui->GetWindow(DATABASE_VIEWER_WINDOW)->Show();
                     }
 
                     if (ImGui::MenuItem(u8"\uE81E Output", nullptr, ui->GetWindow(OUTPUT_WINDOW)->IsShowed()))

@@ -259,7 +259,7 @@ namespace oaui
 		{
 		case DOCKSPACE_WINDOW:
 			return m_dockspaceWindow;
-		case DATATBASE_VIWER_WINDOW:
+		case DATABASE_VIEWER_WINDOW:
 			return m_databaseViewerWindow;
 		case NOTEPAD_WINDOW:
 			return m_notepadWindow;
