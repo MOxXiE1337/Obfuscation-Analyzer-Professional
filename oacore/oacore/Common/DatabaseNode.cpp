@@ -27,6 +27,9 @@ namespace oacore
 
 	DatabaseNode::~DatabaseNode()
 	{
+		delete m_lock;
+		delete m_name;
+		delete m_text;
 		DeleteChildNodes();
 	}
 
