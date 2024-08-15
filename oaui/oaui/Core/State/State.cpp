@@ -42,12 +42,18 @@ namespace oaui
         oacore::CloseAnalyzer(m_analyzer);
         m_analyzer = oacore::CreateAnalyzer();
 
+        if (m_database != nullptr);
+            delete m_database;
+
+        m_database = new oacore::Database{};
+
         SetWindowTextA(m_ui.GetHWND(), "Obfuscation Analyzer Professional");
     }
 
     bool State::Initialize(HWND hwnd)
     {
         m_analyzer = oacore::CreateAnalyzer();
+        m_database = new oacore::Database{};
 
         if (m_analyzer == nullptr)
             return false;

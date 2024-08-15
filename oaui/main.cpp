@@ -13,6 +13,7 @@
 #include <tchar.h>
 
 #include "oaui/Core/State/State.h"
+#include "oaui/Core/UI/Windows/SavingWindow/SavingWindow.h"
 
 #include <iostream>
 
@@ -248,9 +249,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     oaui::UI* ui = state->GetUI();
     oacore::IAnalyzer* analyzer = state->GetAnalyzer();
-    oaui::Window* saveWindow = ui->GetWindow(oaui::WINDOW_SAVING_WINDOW);
-
-    //oaui::Loader& loader = oaui::Loader::GetInstance();
+    oaui::SavingWindow* savingWindow = dynamic_cast<oaui::SavingWindow*>(ui->GetWindow(oaui::WINDOW_SAVING_WINDOW));
 
     if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
         return true;
@@ -262,7 +261,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
     case WM_DROPFILES:
     {
-        HDROP drop = (HDROP)wParam;
+        HDROP drop = reinterpret_cast<HDROP>(wParam);
         UINT fileNum = DragQueryFileA(drop, 0xFFFFFFFF, NULL, 0);        
         
         if (fileNum != 1)
@@ -276,9 +275,8 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         {
             if (analyzer->IsLoaded())
             {
-                saveWindow->Show();
-                saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_LOAD_DRAGGED_FILE, true);
-                saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_DRAGGED_FILE_PATH, std::string(filePath));
+                savingWindow->Show();
+                savingWindow->LoadDraggedFile(filePath);
             }
             else
             {
@@ -292,15 +290,15 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
     }
     case WM_CLOSE:
-        if (state->GetAnalyzer()->IsLoaded() && !saveWindow->GetOptionValue<bool>(oaui::Constants::SAVINGWINDOW_EXITING))
+        if (state->GetAnalyzer()->IsLoaded() && !savingWindow->IsProgramExiting())
         {
-            saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_OPEN_NEW_FILE, false);
-            saveWindow->SetOptionValue(oaui::Constants::SAVINGWINDOW_SHOULD_EXIT, true);
-            saveWindow->Show();
+            savingWindow->CloseOpenFileDialog();
+            savingWindow->ExitProgram();
+            savingWindow->Show();
             return 0;
         }
         
-        if (saveWindow->GetOptionValue<bool>(oaui::Constants::SAVINGWINDOW_EXITING))
+        if (savingWindow->IsProgramExiting())
             return 0;
 
         return DefWindowProc(hWnd, msg, wParam, lParam);

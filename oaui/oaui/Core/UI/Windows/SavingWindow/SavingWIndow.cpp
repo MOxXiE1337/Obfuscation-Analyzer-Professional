@@ -10,14 +10,38 @@ void ExitOnTimer(HWND hwnd, UINT arg1, UINT_PTR nIDEvent, DWORD arg3)
 
 namespace oaui
 {
-    SavingWindow::SavingWindow()
+    SavingWindow::SavingWindow() : m_draggedFilePath{}
     {
-        // Intiialize options
-        SetOptionValue(Constants::SAVINGWINDOW_OPEN_NEW_FILE, false);
-        SetOptionValue(Constants::SAVINGWINDOW_SHOULD_EXIT, false);
-        SetOptionValue(Constants::SAVINGWINDOW_EXITING, false);
-        SetOptionValue(Constants::SAVINGWINDOW_LOAD_DRAGGED_FILE, true);
-        SetOptionValue(Constants::SAVINGWINDOW_DRAGGED_FILE_PATH, std::string(""));
+        m_openOpenFileDialog = false;
+        m_shouldExitProgram = false;
+        m_isProgramExiting = false;
+        m_loadDraggedFile = false;
+    }
+
+    void SavingWindow::OpenOpenFileDialog()
+    {
+        m_openOpenFileDialog = true;
+    }
+
+    void SavingWindow::CloseOpenFileDialog()
+    {
+        m_openOpenFileDialog = false;
+    }
+
+    void SavingWindow::ExitProgram()
+    {
+        m_shouldExitProgram = true;
+    }
+
+    bool SavingWindow::IsProgramExiting()
+    {
+        return m_isProgramExiting;
+    }
+
+    void SavingWindow::LoadDraggedFile(const std::string& path)
+    {
+        m_loadDraggedFile = true;
+        m_draggedFilePath = path;
     }
 
     void SavingWindow::Render(UI* ui)
@@ -56,29 +80,29 @@ namespace oaui
             Close();
 
             
-            if (GetOptionValue<bool>(Constants::SAVINGWINDOW_OPEN_NEW_FILE))
+            if (m_openOpenFileDialog)
             {
                 std::string path{};
                 if (Utils::SelectFile(ui->GetHWND(), "Exe\0*.exe\0Dll\0*.dll\0Database File\0*.odb", path))
                 {
                     ui->GetState()->LoadFile(path);
                 }
-                SetOptionValue(Constants::SAVINGWINDOW_OPEN_NEW_FILE, false);
+                m_openOpenFileDialog = false;
             }
 
             
-            if (GetOptionValue<bool>(Constants::SAVINGWINDOW_LOAD_DRAGGED_FILE))
+            if (m_loadDraggedFile)
             {
-                ui->GetState()->LoadFile(GetOptionValue<std::string>(Constants::SAVINGWINDOW_DRAGGED_FILE_PATH));
-                // SetOptionValue(Constants::SAVINGWINDOW_DRAGGED_FILE_PATH, std::string(""));
-                SetOptionValue<bool>(Constants::SAVINGWINDOW_LOAD_DRAGGED_FILE, false);
+                ui->GetState()->LoadFile(m_draggedFilePath);
+                // m_draggedFilePath.clear();
+                m_loadDraggedFile = false;
             } 
 
-            if (GetOptionValue<bool>(Constants::SAVINGWINDOW_SHOULD_EXIT))
+            if (m_shouldExitProgram = true)
             {
-                //Log("Exiting...");
-                SetOptionValue(Constants::SAVINGWINDOW_EXITING, true);
-                SetTimer(ui->GetHWND(), 1, 1500, ExitOnTimer);
+                ui->Log("Exiting...");
+                m_isProgramExiting = true;
+                SetTimer(ui->GetHWND(), 1, 1000, ExitOnTimer);
             }
         }
 
@@ -87,7 +111,7 @@ namespace oaui
         if (ImGui::Button("Cancel"))
         {
             Close();
-            SetOptionValue<bool>(Constants::SAVINGWINDOW_SHOULD_EXIT, false);
+            m_shouldExitProgram = false;
         }
 
         ImGui::End();

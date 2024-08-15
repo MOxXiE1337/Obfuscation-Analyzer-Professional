@@ -1,7 +1,6 @@
 #pragma once
 #include "oaui/oaui.h"
 #include "oaui/Core/UI/UI.h"
-#include "oaui/Core/UI/Constants.h"
 
 #include "Window.h"
 #include "MenuBar.h"
@@ -13,6 +12,7 @@ namespace oaui
 	enum _WindowId
 	{
 		WINDOW_DOCKSPACE_WINDOW,
+		WINDOW_NOTEPAD_WINDOW,
 		WINDOW_OUTPUT_WINDOW,
 		WINDOW_SAVING_WINDOW
 	};
@@ -26,6 +26,7 @@ namespace oaui
 
 		MenuBar* m_mainMenuBar;
 		Window* m_dockspaceWindow;
+		Window* m_notepadWindow;
 		Window* m_outputWindow;
 		Window* m_savingWindow;
 

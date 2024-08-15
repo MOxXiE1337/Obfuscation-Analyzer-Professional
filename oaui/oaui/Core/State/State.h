@@ -11,6 +11,7 @@ namespace oaui
 	{
 	private:
 		oacore::IAnalyzer* m_analyzer;
+		oacore::Database* m_database;
 		UI m_ui;
 
 	public:

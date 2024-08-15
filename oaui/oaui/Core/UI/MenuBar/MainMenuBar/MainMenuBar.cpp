@@ -3,6 +3,8 @@
 #include "oaui/Core/State/State.h"
 #include "oaui/Utils/Utils.h"
 
+#include "oaui/Core/UI/Windows/SavingWindow/SavingWindow.h"
+
 namespace oaui
 {
     void MainMenuBar::Render(UI* ui)
@@ -23,26 +25,27 @@ namespace oaui
 
                     GetModuleFileNameA(NULL, processName, MAX_PATH);
                     CreateProcessA(processName, (LPSTR)"", NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &startInfo, &pinfo);
+
+                    CloseHandle(pinfo.hProcess);
+                    CloseHandle(pinfo.hThread);
                 }
                 ImGui::Separator();
 
                 if (ImGui::MenuItem(u8"\uE804 Open"))
                 {
-                    if (analyzer != nullptr)
+
+                    if (analyzer->IsLoaded())
                     {
-                        if (analyzer->IsLoaded())
+                        SavingWindow* saveWindow = dynamic_cast<SavingWindow*>(ui->GetWindow(WINDOW_SAVING_WINDOW));
+                        saveWindow->Show();
+                        saveWindow->OpenOpenFileDialog();
+                    }
+                    else
+                    {
+                        std::string path{};
+                        if (Utils::SelectFile(ui->GetHWND(), "Executable File (*.exe *.dll)\0*.exe;*.dll\0Database File (*.odb)\0*.odb\0\0", path))
                         {
-                            Window* saveWindow = ui->GetWindow(WINDOW_SAVING_WINDOW);
-                            saveWindow->Show();
-                            saveWindow->SetOptionValue<bool>(Constants::SAVINGWINDOW_OPEN_NEW_FILE, true);
-                        }
-                        else
-                        {
-                            std::string path{};
-                            if (Utils::SelectFile(ui->GetHWND(), "Exe\0*.exe\0Dll\0*.dll\0Database File\0*.odb", path))
-                            {
-                                ui->GetState()->LoadFile(path);
-                            }
+                            ui->GetState()->LoadFile(path);
                         }
                     }
                 }
@@ -85,11 +88,11 @@ namespace oaui
 
                     ImGui::Separator();
 
-                    /*
-                    if (ImGui::MenuItem(u8"\uE620 Notepad", nullptr, m_showNotepadWindow, Loader::GetInstance().IsLoaded()))
+                    
+                    if (ImGui::MenuItem(u8"\uE620 Database notepad", nullptr, ui->GetWindow(WINDOW_NOTEPAD_WINDOW)->IsShowed(), analyzer->IsLoaded()))
                     {
-                        m_showNotepadWindow = true;
-                    }*/
+                        ui->GetWindow(WINDOW_NOTEPAD_WINDOW)->Show();
+                    }
                     ImGui::EndMenu(); 
                 }
                 

@@ -159,18 +159,19 @@
     <ClCompile Include="oaui\Core\UI\UI.cpp" />
     <ClCompile Include="oaui\Core\UI\Window.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.cpp" />
+    <ClCompile Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWIndow.cpp" />
     <ClCompile Include="oaui\Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oaui\Core\State\State.h" />
-    <ClInclude Include="oaui\Core\UI\Constants.h" />
     <ClInclude Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.h" />
     <ClInclude Include="oaui\Core\UI\UI.h" />
     <ClInclude Include="oaui\Core\UI\Window.h" />
     <ClInclude Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.h" />
     <ClInclude Include="oaui\Core\UI\MenuBar.h" />
+    <ClInclude Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.h" />
     <ClInclude Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.h" />
     <ClInclude Include="oaui\Core\UI\Windows\SavingWindow\SavingWindow.h" />
     <ClInclude Include="oaui\oaui.h" />
