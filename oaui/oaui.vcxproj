@@ -158,6 +158,7 @@
     <ClCompile Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.cpp" />
     <ClCompile Include="oaui\Core\UI\UI.cpp" />
     <ClCompile Include="oaui\Core\UI\Window.cpp" />
+    <ClCompile Include="oaui\Core\UI\Windows\DatabaseViewerWindow\DatabaseViewerWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.cpp" />
     <ClCompile Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.h" />
     <ClInclude Include="oaui\Core\UI\UI.h" />
     <ClInclude Include="oaui\Core\UI\Window.h" />
+    <ClInclude Include="oaui\Core\UI\Windows\DatabaseViewerWindow\DatabaseViewerWindow.h" />
     <ClInclude Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.h" />
     <ClInclude Include="oaui\Core\UI\MenuBar.h" />
     <ClInclude Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.h" />

@@ -19,6 +19,8 @@ namespace oaui
 		~State();
 
 		oacore::IAnalyzer* GetAnalyzer();
+		oacore::Database* GetDatabase();
+
 		UI* GetUI();
 		
 		void LoadFile(const std::string& path);

@@ -57,32 +57,33 @@ namespace oacore
 		{
 			oacore::DatabaseNode* newNode = new oacore::DatabaseNode{ curElement->Name()};
 
+
 			if (curElement->GetText())
-			{
-				*newNode->Text = curElement->GetText();
-			}
+				newNode->SetText(curElement->GetText());
 
 			node->InsertChildNode(newNode);
 
-			_LoadXMLIntoDatabase(newNode, element->FirstChildElement());
+			_LoadXMLIntoDatabase(newNode, curElement->FirstChildElement());
 		}
 	}
 
-	void _BuildXMLTree(tinyxml2::XMLElement* element, oacore::DatabaseNode* node)
+	void _BuildXMLTree(tinyxml2::XMLElement* element, DatabaseNode* node)
 	{
 		using namespace tinyxml2;
 
 		if (element == nullptr)
 			return;
 
-		for (oacore::DatabaseNode* curNode = node; curNode; curNode = curNode->NextSiblingNode)
+		oacore::DatabaseNode* curNode = node;
+		while(curNode)
 		{
-			XMLElement* newElement = element->InsertNewChildElement(curNode->Name->c_str());
+			XMLElement* newElement = element->InsertNewChildElement(curNode->Name().c_str());
 
-			if (!curNode->Text->empty())
-				newElement->SetText(curNode->Text->c_str());
+			if (!curNode->Text().empty())
+				newElement->SetText(curNode->Text().c_str());
 
-			_BuildXMLTree(newElement, curNode->ChildNode);
+			_BuildXMLTree(newElement, curNode->ChildNode());
+			curNode = curNode->NextSiblingNode();
 		}
 	}
 
@@ -99,13 +100,13 @@ namespace oacore
 	std::string Database::_GetValue(const std::string& name, int order)
 	{
 		DatabaseNode* node = _FindNodeByKey(m_root, name, order, false);
-		return *node->Text;
+		return node->Text();
 	}
 
 	void Database::_SetValue(const std::string& name, const std::string& value, int order)
 	{
 		DatabaseNode* node = _FindNodeByKey(m_root, name, order, true);
-		*node->Text = value;
+		node->SetText(value);
 	}
 
 	DatabaseNode* Database::GetRoot()
@@ -147,19 +148,26 @@ namespace oacore
 		doc.InsertEndChild(comment);
 		doc.InsertEndChild(newLineText);
 
-		for (oacore::DatabaseNode* curNode = m_root->ChildNode; curNode; curNode = curNode->NextSiblingNode)
+		oacore::DatabaseNode* curNode = m_root->ChildNode();
+		while(curNode)
 		{
-			XMLElement* newElement = doc.NewElement(curNode->Name->c_str());
-			if (!curNode->Text->empty())
-				newElement->SetText(curNode->Text->c_str());
+			XMLElement* newElement = doc.NewElement(curNode->Name().c_str());
+			if (!curNode->Text().empty())
+				newElement->SetText(curNode->Text().c_str());
 
-			_BuildXMLTree(newElement, curNode->ChildNode);
+			_BuildXMLTree(newElement, curNode->ChildNode());
 			doc.InsertEndChild(newElement);
+			curNode = curNode->NextSiblingNode();
 		}
 
 		if (!doc.SaveFile(path.c_str()))
 			return false;
 		return true;
+	}
+
+	void Database::Clear()
+	{
+		m_root->DeleteChildNodes();
 	}
 
 	typedef const char* CStringType;

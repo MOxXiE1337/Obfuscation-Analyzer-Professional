@@ -18,6 +18,11 @@ namespace oaui
         return m_analyzer;
     }
 
+    oacore::Database* State::GetDatabase()
+    {
+        return m_database;
+    }
+
     UI* State::GetUI()
     {
         return &m_ui;
@@ -42,24 +47,25 @@ namespace oaui
         oacore::CloseAnalyzer(m_analyzer);
         m_analyzer = oacore::CreateAnalyzer();
 
-        if (m_database != nullptr);
-            delete m_database;
-
-        m_database = new oacore::Database{};
+        m_database = m_analyzer->GetDatabase();
 
         SetWindowTextA(m_ui.GetHWND(), "Obfuscation Analyzer Professional");
     }
 
+
     bool State::Initialize(HWND hwnd)
     {
         m_analyzer = oacore::CreateAnalyzer();
-        m_database = new oacore::Database{};
+        m_database = m_analyzer->GetDatabase();;
 
         if (m_analyzer == nullptr)
             return false;
 
         if (!m_ui.Initialize(hwnd))
             return false;
+        
+        m_database->LoadFile("D:\\XMLTest.xml");
+
         return true;
     }
 

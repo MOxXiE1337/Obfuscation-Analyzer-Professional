@@ -4,6 +4,8 @@
 
 #include "MenuBar/MainMenuBar/MainMenuBar.h"
 #include "Windows/DockspaceWindow/DockspaceWindow.h"
+
+#include "Windows/DatabaseViewerWindow/DatabaseViewerWindow.h"
 #include "Windows/NotepadWindow/NotepadWindow.h"
 #include "Windows/OutputWindow/OutputWindow.h"
 #include "Windows/SavingWindow/SavingWindow.h"
@@ -21,6 +23,7 @@ namespace oaui
 
 		m_mainMenuBar = new MainMenuBar{};
 		m_dockspaceWindow = new DockspaceWindow{};
+		m_databaseViewerWindow = new DatabaseViewerWindow{};
 		m_notepadWindow = new NotepadWindow{};
 		m_outputWindow = new OutputWindow{};
 		m_savingWindow = new SavingWindow{};
@@ -30,6 +33,10 @@ namespace oaui
 	{
 		delete m_mainMenuBar;
 		delete m_dockspaceWindow;
+		delete m_databaseViewerWindow;
+		delete m_notepadWindow;
+		delete m_outputWindow;
+		delete m_savingWindow;
 	}
 
 	bool UI::_InitializeStyle()
@@ -168,13 +175,15 @@ namespace oaui
 	{
 		switch (id)
 		{
-		case WINDOW_DOCKSPACE_WINDOW:
+		case DOCKSPACE_WINDOW:
 			return m_dockspaceWindow;
-		case WINDOW_NOTEPAD_WINDOW:
+		case DATATBASE_VIWER_WINDOW:
+			return m_databaseViewerWindow;
+		case NOTEPAD_WINDOW:
 			return m_notepadWindow;
-		case WINDOW_OUTPUT_WINDOW:
+		case OUTPUT_WINDOW:
 			return m_outputWindow;
-		case WINDOW_SAVING_WINDOW:
+		case SAVING_WINDOW:
 			return m_savingWindow;
 		default:
 			return nullptr;
@@ -211,6 +220,7 @@ namespace oaui
 		m_mainMenuBar->Render(this);
 		
 		OAUI_RENDER_WINDOW(m_dockspaceWindow);
+		OAUI_RENDER_WINDOW(m_databaseViewerWindow);
 		OAUI_RENDER_WINDOW(m_notepadWindow);
 		OAUI_RENDER_WINDOW(m_outputWindow);
 		OAUI_RENDER_WINDOW(m_savingWindow);

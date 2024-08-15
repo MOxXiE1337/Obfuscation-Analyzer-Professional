@@ -11,10 +11,11 @@ namespace oaui
 {
 	enum _WindowId
 	{
-		WINDOW_DOCKSPACE_WINDOW,
-		WINDOW_NOTEPAD_WINDOW,
-		WINDOW_OUTPUT_WINDOW,
-		WINDOW_SAVING_WINDOW
+		DOCKSPACE_WINDOW,
+		DATATBASE_VIWER_WINDOW,
+		NOTEPAD_WINDOW,
+		OUTPUT_WINDOW,
+		SAVING_WINDOW
 	};
 
 	class UI
@@ -26,6 +27,7 @@ namespace oaui
 
 		MenuBar* m_mainMenuBar;
 		Window* m_dockspaceWindow;
+		Window* m_databaseViewerWindow;
 		Window* m_notepadWindow;
 		Window* m_outputWindow;
 		Window* m_savingWindow;

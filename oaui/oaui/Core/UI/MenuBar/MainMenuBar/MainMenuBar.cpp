@@ -36,7 +36,7 @@ namespace oaui
 
                     if (analyzer->IsLoaded())
                     {
-                        SavingWindow* saveWindow = reinterpret_cast<SavingWindow*>(ui->GetWindow(WINDOW_SAVING_WINDOW));
+                        SavingWindow* saveWindow = reinterpret_cast<SavingWindow*>(ui->GetWindow(SAVING_WINDOW));
                         saveWindow->Show();
                         saveWindow->OpenOpenFileDialog();
                     }
@@ -81,17 +81,22 @@ namespace oaui
                     }
                     ImGui::Separator(); */
 
-                    if (ImGui::MenuItem(u8"\uE81E Output", nullptr, ui->GetWindow(WINDOW_OUTPUT_WINDOW)->IsShowed()))
+                    if (ImGui::MenuItem(u8"\uE7E8 Database viewer", nullptr, ui->GetWindow(DATATBASE_VIWER_WINDOW)->IsShowed(), analyzer->IsLoaded()))
                     {
-                        ui->GetWindow(WINDOW_OUTPUT_WINDOW)->Show();
+                        ui->GetWindow(DATATBASE_VIWER_WINDOW)->Show();
+                    }
+
+                    if (ImGui::MenuItem(u8"\uE81E Output", nullptr, ui->GetWindow(OUTPUT_WINDOW)->IsShowed()))
+                    {
+                        ui->GetWindow(OUTPUT_WINDOW)->Show();
                     }
 
                     ImGui::Separator();
 
                     
-                    if (ImGui::MenuItem(u8"\uE620 Database notepad", nullptr, ui->GetWindow(WINDOW_NOTEPAD_WINDOW)->IsShowed(), analyzer->IsLoaded()))
+                    if (ImGui::MenuItem(u8"\uE620 Database notepad", nullptr, ui->GetWindow(NOTEPAD_WINDOW)->IsShowed(), analyzer->IsLoaded()))
                     {
-                        ui->GetWindow(WINDOW_NOTEPAD_WINDOW)->Show();
+                        ui->GetWindow(NOTEPAD_WINDOW)->Show();
                     }
                     ImGui::EndMenu(); 
                 }

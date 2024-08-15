@@ -70,10 +70,6 @@ int main(int, char**)
     if (!state->Initialize(hwnd))
         return -1;
 
-    state->GetUI()->Log("Log test");
-    state->GetUI()->Warn("Warn test");
-    state->GetUI()->Error("Error test");
-
     // Setup Platform/Renderer backends
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(g_pd3dDevice, g_pd3dDeviceContext);
@@ -249,7 +245,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     oaui::UI* ui = state->GetUI();
     oacore::IAnalyzer* analyzer = state->GetAnalyzer();
-    oaui::SavingWindow* savingWindow = reinterpret_cast<oaui::SavingWindow*>(ui->GetWindow(oaui::WINDOW_SAVING_WINDOW));
+    oaui::SavingWindow* savingWindow = reinterpret_cast<oaui::SavingWindow*>(ui->GetWindow(oaui::SAVING_WINDOW));
 
     if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
         return true;
