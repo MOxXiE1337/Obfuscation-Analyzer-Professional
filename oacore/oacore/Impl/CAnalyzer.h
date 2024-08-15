@@ -2,6 +2,7 @@
 
 #include "oacore/Interfaces/IAnalyzer.h"
 
+#include "CPELoader.h"
 #include "CDisassembler.h"
 
 namespace oacore
@@ -9,14 +10,22 @@ namespace oacore
 	class CAnalyzer : public IAnalyzer
 	{
 	private:
+		int m_componentError[COMPONENT_SIZE];
+	private:
 		bool m_loaded;
 		std::string m_filePath;
 
-		Database m_database;
-
+		Database     m_database;
+		CPELoader     m_peLoader;
 		CDisassembler m_disassembler;
 
+
 		uintptr_t m_rebasedImagebase;
+
+	public:
+		_AnalyzerLoadStatus _LoadPEFile(const std::string& path);
+		_AnalyzerLoadStatus _LoadDatabaseFile(const std::string& path);
+
 	public:
 		CAnalyzer();
 
@@ -29,6 +38,10 @@ namespace oacore
 		uintptr_t      GetImagebase();
 		void           RebaseProgram(uintptr_t imagebase);
 
-		ANALYZER_LOAD_STATUS LoadFile(const std::string& path);
+		unsigned int   GetComponentLastError(_OacoreComponent component);
+		void           SetComponentLastError(_OacoreComponent component, int error);
+
+
+		_AnalyzerLoadStatus LoadFile(const std::string& path);
 	};
 }

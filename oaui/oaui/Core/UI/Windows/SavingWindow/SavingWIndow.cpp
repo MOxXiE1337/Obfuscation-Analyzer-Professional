@@ -48,14 +48,19 @@ namespace oaui
     {
         static bool save = true;
 
+        HWND hwnd = FindWindowA("ImGui Platform", "Save to disk");
+        if (hwnd)
+            SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+
+
         ImVec2 center = ImGui::GetMainViewport()->GetCenter();
         ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
 
-        ImGui::Begin("Save to database", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoMove);
+        ImGui::Begin("Save to disk", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoMove);
 
         if (!ImGui::IsWindowFocused())
         {
-            PlaySoundA("SystemAsterisk", NULL, SND_ASYNC);
+            PlaySoundA("C:\\Windows\\Media\\Windows background.wav", NULL, SND_ASYNC);
             ImGui::SetWindowFocus();
         }
 
@@ -73,9 +78,9 @@ namespace oaui
         if (ImGui::Button("OK"))
         {
             if (save)
-                ui->GetState()->Save("", true);
+                State::GetInstance().Save("", true);
             else
-                ui->GetState()->Reset();
+                State::GetInstance().Reset();
             
             Close();
 
@@ -83,9 +88,9 @@ namespace oaui
             if (m_openOpenFileDialog)
             {
                 std::string path{};
-                if (Utils::SelectFile(ui->GetHWND(), "Exe\0*.exe\0Dll\0*.dll\0Database File\0*.odb", path))
+                if (Utils::SelectFile(ui->GetHWND(), "Executable File (*.exe *.dll)\0*.exe;*.dll\0Database File (*.odb)\0*.odb\0\0", path))
                 {
-                    ui->GetState()->LoadFile(path);
+                    State::GetInstance().LoadFile(path);
                 }
                 m_openOpenFileDialog = false;
             }
@@ -93,7 +98,7 @@ namespace oaui
             
             if (m_loadDraggedFile)
             {
-                ui->GetState()->LoadFile(m_draggedFilePath);
+                State::GetInstance().LoadFile(m_draggedFilePath);
                 // m_draggedFilePath.clear();
                 m_loadDraggedFile = false;
             } 

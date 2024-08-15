@@ -1,12 +1,4 @@
-﻿// Dear ImGui: standalone example application for DirectX 11
-
-// Learn about Dear ImGui:
-// - FAQ                  https://dearimgui.com/faq
-// - Getting Started      https://dearimgui.com/getting-started
-// - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
-// - Introduction, links and more at the top of imgui.cpp
-
-#include "imgui.h"
+﻿#include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
 #include <d3d11.h>
@@ -14,8 +6,6 @@
 
 #include "oaui/Core/State/State.h"
 #include "oaui/Core/UI/Windows/SavingWindow/SavingWindow.h"
-
-#include <iostream>
 
 // Data
 static ID3D11Device* g_pd3dDevice = nullptr;
@@ -25,9 +15,6 @@ static bool                     g_SwapChainOccluded = false;
 static UINT                     g_ResizeWidth = 0, g_ResizeHeight = 0;
 static ID3D11RenderTargetView* g_mainRenderTargetView = nullptr;
 
-oaui::State* state;
-
-// Forward declarations of helper functions
 bool CreateDeviceD3D(HWND hWnd);
 void CleanupDeviceD3D();
 void CreateRenderTarget();
@@ -36,7 +23,6 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 int main(int, char**)
 {
-    state = new oaui::State{};
 
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
@@ -67,28 +53,12 @@ int main(int, char**)
     io.ConfigViewportsNoAutoMerge = true;
     io.ConfigDockingTransparentPayload = true;
     
-    if (!state->Initialize(hwnd))
+    if (!oaui::State::GetInstance().Initialize(hwnd, g_pd3dDevice))
         return -1;
 
     // Setup Platform/Renderer backends
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(g_pd3dDevice, g_pd3dDeviceContext);
-
-    // Load Fonts
-    // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
-    // - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
-    // - If the file cannot be loaded, the function will return a nullptr. Please handle those errors in your application (e.g. use an assertion, or display an error and quit).
-    // - The fonts will be rasterized at a given size (w/ oversampling) and stored into a texture when calling ImFontAtlas::Build()/GetTexDataAsXXXX(), which ImGui_ImplXXXX_NewFrame below will call.
-    // - Use '#define IMGUI_ENABLE_FREETYPE' in your imconfig file to use Freetype for higher quality font rendering.
-    // - Read 'docs/FONTS.md' for more instructions and details.
-    // - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
-    //io.Fonts->AddFontDefault();
-    //io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf", 18.0f);
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
-    //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, nullptr, io.Fonts->GetGlyphRangesJapanese());
-    //IM_ASSERT(font != nullptr);
 
     // Our state
     bool show_demo_window = true;
@@ -99,8 +69,6 @@ int main(int, char**)
     bool done = false;
     while (!done)
     {
-        // Poll and handle messages (inputs, window resize, etc.)
-        // See the WndProc() function below for our to dispatch events to the Win32 backend.
         MSG msg;
         while (::PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
         {
@@ -112,7 +80,6 @@ int main(int, char**)
         if (done)
             break;
 
-        // Handle window being minimized or screen locked
         if (g_SwapChainOccluded && g_pSwapChain->Present(0, DXGI_PRESENT_TEST) == DXGI_STATUS_OCCLUDED)
         {
             ::Sleep(10);
@@ -134,7 +101,7 @@ int main(int, char**)
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        state->GetUI()->Render();
+        oaui::State::GetInstance().GetUI()->Render();
 
        ImGui::ShowDemoWindow();
 
@@ -163,7 +130,7 @@ int main(int, char**)
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
 
-    state->Shutdown();
+    oaui::State::GetInstance().Shutdown();
 
     CleanupDeviceD3D();
     ::DestroyWindow(hwnd);
@@ -243,8 +210,8 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    oaui::UI* ui = state->GetUI();
-    oacore::IAnalyzer* analyzer = state->GetAnalyzer();
+    oaui::UI* ui = oaui::State::GetInstance().GetUI();;
+    oacore::IAnalyzer* analyzer = oaui::State::GetInstance().GetAnalyzer();
     oaui::SavingWindow* savingWindow = reinterpret_cast<oaui::SavingWindow*>(ui->GetWindow(oaui::SAVING_WINDOW));
 
     if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
@@ -276,7 +243,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             }
             else
             {
-                state->LoadFile(filePath);
+                oaui::State::GetInstance().LoadFile(filePath);
             }
         }
 
@@ -286,7 +253,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
     }
     case WM_CLOSE:
-        if (state->GetAnalyzer()->IsLoaded() && !savingWindow->IsProgramExiting())
+        if (oaui::State::GetInstance().GetAnalyzer()->IsLoaded() && !savingWindow->IsProgramExiting())
         {
             savingWindow->CloseOpenFileDialog();
             savingWindow->ExitProgram();

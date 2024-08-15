@@ -119,18 +119,35 @@ namespace oacore
 			return "false";
 		}
 
-		std::string GetShortPath(const std::string& path)
+		std::string GetShortName(const std::string& path)
 		{
-			size_t position = path.find_last_of("/\\");
+			size_t pos = path.find_last_of("/\\");
 
-			return path.substr(position + 1, path.length() - position - 1);
+			return path.substr(pos + 1, path.length() - pos - 1);
+		}
+
+		std::string GetPathWithoutExtension(const std::string& path)
+		{
+			std::string::size_type pos = path.find_last_of('.');
+			return path.substr(0, pos - 1);
 		}
 
 		std::string GetPathDirectory(const std::string& path)
 		{
-			size_t position = path.find_last_of("/\\");
+			size_t pos = path.find_last_of("/\\");
 
-			return path.substr(0, position + 1);
+			return path.substr(0, pos);
+		}
+
+		std::string GetExtensionName(const std::string& path)
+		{
+			std::string result{};
+			std::string shortPath = GetShortName(path);
+			std::string::size_type pos = shortPath.find_last_of('.');
+			if (pos != std::string::npos)
+				result = shortPath.substr(pos + 1);
+			std::transform(result.begin(), result.end(), result.begin(), ::tolower);;
+			return result;
 		}
 
 	}

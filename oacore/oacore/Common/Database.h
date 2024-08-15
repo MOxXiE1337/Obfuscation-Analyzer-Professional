@@ -1,6 +1,8 @@
 #pragma once
 #include "oacore/oacore.h"
 
+#define OACORE_DATABASE_ERROR_STRING "6-?9syz $@/hae0qSs4B.xtcm,aWh}Cz" // random generated
+
 namespace oacore
 {
 	struct BinaryData
@@ -59,16 +61,20 @@ namespace oacore
 		void          DeleteChildNodes();
 	};
 
-	enum _DatabaseLoadFileStatus
+	enum _DatabaseLoadStatus
 	{
 		DATABASE_LOAD_SUCCESS,
 		DATABASE_FILE_OPEN_FAIL,
 		DATABASE_XML_PARSE_FAIL,
+
+		// for database loading
+		DATABASE_CORRUPTED
 	};
 
-	enum _DatabaseSaveFileStatus
+	enum _DatabaseSaveStatus
 	{
 		DATABASE_SAVE_SUCCESS,
+		DATABASE_SAVE_TO_FILE_FAIL
 	};
 
 	class OACORE_API Database
@@ -86,13 +92,13 @@ namespace oacore
 
 		DatabaseNode*           GetRoot();
 
-		_DatabaseLoadFileStatus LoadFile(const std::string& path);
-		bool                    SaveFile(const std::string& path);
+		_DatabaseLoadStatus     LoadFile(const std::string& path);
+		_DatabaseSaveStatus     SaveFile(const std::string& path);
 
 		template <typename T>
-		bool                    GetValue(const std::string& key, T& value, int order = 0);
+		bool                    GetValue(const std::string& name, T& value, int order = 0);
 		template <typename T>
-		bool                    SetValue(const std::string& key, const T& value, int order = -1);
+		bool                    SetValue(const std::string& name, const T& value, int order = -1);
 		void                    Clear();
 	};
 }

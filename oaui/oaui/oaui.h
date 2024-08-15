@@ -2,8 +2,10 @@
 
 #include <regex>
 #include <mutex>
+#include <thread>
 #include <string>
 #include <sstream>
+#include <functional>
 #include <unordered_map>
 
 #include <Windows.h>

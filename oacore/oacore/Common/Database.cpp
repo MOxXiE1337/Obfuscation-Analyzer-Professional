@@ -100,6 +100,8 @@ namespace oacore
 	std::string Database::_GetValue(const std::string& name, int order)
 	{
 		DatabaseNode* node = _FindNodeByKey(m_root, name, order, false);
+		if (node == nullptr)
+			return OACORE_DATABASE_ERROR_STRING;
 		return node->Text();
 	}
 
@@ -114,9 +116,10 @@ namespace oacore
 		return m_root;
 	}
 
-	_DatabaseLoadFileStatus Database::LoadFile(const std::string& path)
+	_DatabaseLoadStatus Database::LoadFile(const std::string& path)
 	{
-		_DatabaseLoadFileStatus status = DATABASE_LOAD_SUCCESS;
+		_DatabaseLoadStatus status = DATABASE_LOAD_SUCCESS;
+		Clear();
 
 		using namespace tinyxml2;
 
@@ -135,7 +138,7 @@ namespace oacore
 		return status;
 	}
 
-	bool Database::SaveFile(const std::string& path)
+	_DatabaseSaveStatus Database::SaveFile(const std::string& path)
 	{
 		using namespace tinyxml2;
 
@@ -161,8 +164,8 @@ namespace oacore
 		}
 
 		if (!doc.SaveFile(path.c_str()))
-			return false;
-		return true;
+			return DATABASE_SAVE_TO_FILE_FAIL;
+		return DATABASE_SAVE_SUCCESS;
 	}
 
 	void Database::Clear()
@@ -207,7 +210,8 @@ namespace oacore
 		}
 		if constexpr (std::is_same<T, std::string>::value)
 		{
-			value = result;
+			if (result == OACORE_DATABASE_ERROR_STRING)
+				return false;
 			return true;
 		}
 		if constexpr (std::is_same<T, BinaryData>::value)

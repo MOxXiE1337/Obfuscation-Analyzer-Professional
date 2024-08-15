@@ -21,9 +21,6 @@
     <ClInclude Include="oacore\Interfaces\ISimulator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Interfaces\CSimulator.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="oacore\Interfaces\IAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -43,6 +40,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="External\cpp-base64\cpp-base64.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oacore\Interfaces\IPELoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oacore\Impl\CPELoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -69,6 +72,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="oacore\Utils\String.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="oacore\Impl\CPELoader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,8 +9,7 @@ namespace oaui
 {
     void MainMenuBar::Render(UI* ui)
     {
-        State* state = ui->GetState();
-        oacore::IAnalyzer* analyzer = state->GetAnalyzer();
+        oacore::IAnalyzer* analyzer = State::GetInstance().GetAnalyzer();
 
         if (ImGui::BeginMainMenuBar())
         {
@@ -45,7 +44,7 @@ namespace oaui
                         std::string path{};
                         if (Utils::SelectFile(ui->GetHWND(), "Executable File (*.exe *.dll)\0*.exe;*.dll\0Database File (*.odb)\0*.odb\0\0", path))
                         {
-                            ui->GetState()->LoadFile(path);
+                            State::GetInstance().LoadFile(path);
                         }
                     }
                 }

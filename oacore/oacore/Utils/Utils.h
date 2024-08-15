@@ -13,8 +13,10 @@ namespace oacore
 
 		std::string OACORE_API Bool2String(bool val);
 
-		std::string OACORE_API GetShortPath(const std::string& path);
+		std::string OACORE_API GetShortName(const std::string& path);
+		std::string OACORE_API GetPathWithoutExtension(const std::string& path);
 		std::string OACORE_API GetPathDirectory(const std::string& path);
+		std::string OACORE_API GetExtensionName(const std::string& path);
 
 		std::string OACORE_API Base64Encode(const std::string& str);
 		std::string OACORE_API Base64Encode(const unsigned char* src, size_t size);

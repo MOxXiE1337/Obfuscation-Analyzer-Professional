@@ -9,7 +9,7 @@ namespace oacore
 		while (current)
 		{
 			next = current->NextSiblingNode();
-			delete node;
+			delete current;
 			current = next;
 		}
 
@@ -27,10 +27,10 @@ namespace oacore
 
 	DatabaseNode::~DatabaseNode()
 	{
+		DeleteChildNodes();
 		delete m_lock;
 		delete m_name;
 		delete m_text;
-		DeleteChildNodes();
 	}
 
 	void DatabaseNode::Lock()

@@ -48,6 +48,9 @@
     <ClCompile Include="oaui\Core\UI\Windows\DatabaseViewerWindow\DatabaseViewerWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="oaui\Core\UI\Windows\TestingWindow\TestingWindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oaui\oaui.h">
@@ -87,6 +90,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\DatabaseViewerWindow\DatabaseViewerWindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oaui\Core\UI\Windows\TestingWindow\TestingWindow.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

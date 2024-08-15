@@ -1,6 +1,11 @@
+#include <D3DX11tex.h>
+
 #include "UI.h"
 
 #include "oaui/Resources/Iconfont.h"
+#include "oaui/Resources/InfomationIcon.h"
+#include "oaui/Resources/WarningIcon.h"
+#include "oaui/Resources/ErrorIcon.h"
 
 #include "MenuBar/MainMenuBar/MainMenuBar.h"
 #include "Windows/DockspaceWindow/DockspaceWindow.h"
@@ -8,7 +13,10 @@
 #include "Windows/DatabaseViewerWindow/DatabaseViewerWindow.h"
 #include "Windows/NotepadWindow/NotepadWindow.h"
 #include "Windows/OutputWindow/OutputWindow.h"
+
 #include "Windows/SavingWindow/SavingWindow.h"
+
+#include "Windows/TestingWindow/TestingWindow.h"
 
 #include "imgui_freetype.h"
 
@@ -16,17 +24,59 @@
 
 namespace oaui
 {
+	
+	ID3D11ShaderResourceView* _CreateTextureFromMemory(ID3D11Device* device, void* src, size_t size)
+	{
+
+		ID3D11Texture2D* texture2D = NULL;
+		D3D11_TEXTURE2D_DESC desc;
+
+
+		HRESULT result;
+		D3DX11_IMAGE_LOAD_INFO loadInfo;
+		ZeroMemory(&loadInfo, sizeof(D3DX11_IMAGE_LOAD_INFO));
+		loadInfo.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+		loadInfo.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		loadInfo.MipLevels = D3DX11_DEFAULT;  
+		loadInfo.MipFilter = D3DX11_FILTER_LINEAR;
+		result = D3DX11CreateTextureFromMemory(device, src, size, &loadInfo, NULL, reinterpret_cast<ID3D11Resource**>(&texture2D), NULL);
+
+		if (result != S_OK)
+		{
+			return NULL;
+		}
+		texture2D->GetDesc(&desc);
+
+		ID3D11ShaderResourceView* textureView = NULL;
+
+		// Create texture view
+		D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
+		ZeroMemory(&srvDesc, sizeof(srvDesc));
+		srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+		srvDesc.Texture2D.MipLevels = desc.MipLevels;
+		srvDesc.Texture2D.MostDetailedMip = 0;
+		device->CreateShaderResourceView(texture2D, &srvDesc, &textureView);
+
+		return textureView;
+	} 
+
 	UI::UI()
 	{		
 		m_hwnd = NULL;
-		m_state = nullptr;
+		m_textures = {};
 
 		m_mainMenuBar = new MainMenuBar{};
 		m_dockspaceWindow = new DockspaceWindow{};
 		m_databaseViewerWindow = new DatabaseViewerWindow{};
 		m_notepadWindow = new NotepadWindow{};
 		m_outputWindow = new OutputWindow{};
+
 		m_savingWindow = new SavingWindow{};
+
+#ifndef NDEBUG
+		m_testingWindow = new TestingWindow{};
+#endif
 	}
 
 	UI::~UI()
@@ -36,7 +86,13 @@ namespace oaui
 		delete m_databaseViewerWindow;
 		delete m_notepadWindow;
 		delete m_outputWindow;
+
 		delete m_savingWindow;
+
+
+#ifndef NDEBUG
+		delete m_testingWindow;
+#endif
 	}
 
 	bool UI::_InitializeStyle()
@@ -155,13 +211,35 @@ namespace oaui
 		return true;
 	}
 
-	bool UI::Initialize(HWND hwnd)
+	bool UI::_InitializeTextures()
+	{
+	
+		static auto createTexture = [&](const std::string& name, void* src, size_t size) -> bool
+			{
+				ID3D11ShaderResourceView* texture = _CreateTextureFromMemory(m_device, src, size);
+				if (texture == nullptr)
+				{
+					std::string errorText = "Failed to create texture \"" + name + "\"!";
+					MessageBoxA(m_hwnd, errorText.c_str(), "Error", MB_ICONERROR);
+					return false;
+				}
+				m_textures[name] = texture;
+				return true;
+			};
+
+		return true;
+	}
+
+	bool UI::Initialize(HWND hwnd, ID3D11Device* device)
 	{
 		m_hwnd = hwnd;
+		m_device = device;
 
 		if (!_InitializeFonts())
 			return false;
 		if (!_InitializeStyle())
+			return false;
+		if (!_InitializeTextures())
 			return false;
 		return true;
 	}
@@ -169,6 +247,13 @@ namespace oaui
 	void UI::Shutdown()
 	{
 		return;
+	}
+
+	ImTextureID UI::GetTexture(const std::string name)
+	{
+		if (m_textures.count(name) == 0)
+			return ImTextureID{  };
+		return m_textures[name];
 	}
 
 	Window* UI::GetWindow(_WindowId id)
@@ -215,6 +300,22 @@ namespace oaui
 		va_end(ap);
 	}
 
+	void UI::LogV(const char* text, va_list ap)
+	{
+
+		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(ImGui::GetStyleColorVec4(ImGuiCol_Text), text, ap);
+	}
+
+	void UI::WarnV(const char* text, va_list ap)
+	{
+		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 138, 37, 255), text, ap);
+	}
+
+	void UI::ErrorV(const char* text, va_list ap)
+	{
+		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 0, 0, 255), text, ap);
+	}
+
 	void UI::Render()
 	{
 		m_mainMenuBar->Render(this);
@@ -223,6 +324,11 @@ namespace oaui
 		OAUI_RENDER_WINDOW(m_databaseViewerWindow);
 		OAUI_RENDER_WINDOW(m_notepadWindow);
 		OAUI_RENDER_WINDOW(m_outputWindow);
+
 		OAUI_RENDER_WINDOW(m_savingWindow);
+
+#ifndef NDEBUG
+		OAUI_RENDER_WINDOW(m_testingWindow);
+#endif
 	}
 }

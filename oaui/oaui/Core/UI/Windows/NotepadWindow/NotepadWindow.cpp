@@ -25,7 +25,7 @@ namespace oaui
 	void NotepadWindow::Render(UI* ui)
 	{
 		ImGuiStyle& style = ImGui::GetStyle();
-		oacore::IAnalyzer* analyzer = ui->GetState()->GetAnalyzer();
+		oacore::IAnalyzer* analyzer = State::GetInstance().GetAnalyzer();
 		
 		if(!analyzer->IsLoaded())
 			return;

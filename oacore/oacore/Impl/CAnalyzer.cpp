@@ -1,10 +1,47 @@
 #include "CAnalyzer.h"
 
+#include "oacore/Utils/Utils.h"
+
+
 namespace oacore
 {
-	CAnalyzer::CAnalyzer()
+	_AnalyzerLoadStatus CAnalyzer::_LoadPEFile(const std::string& path)
+	{
+		_AnalyzerLoadStatus status = ANALYZER_LOAD_SUCCESS;
+
+		return status;
+	}
+
+	_AnalyzerLoadStatus CAnalyzer::_LoadDatabaseFile(const std::string& path)
+	{
+		_AnalyzerLoadStatus status = ANALYZER_LOAD_SUCCESS;
+
+		_DatabaseLoadStatus databaseStatus = m_database.LoadFile(path);
+		SetComponentLastError(COMPONENT_DATABASE, databaseStatus);
+
+		if (databaseStatus == DATABASE_XML_PARSE_FAIL)
+			return ANALYZER_DATABASE_LOAD_FAIL;
+
+		_PELoadStatus peStatus = m_peLoader.LoadFromDatabase(this); // only return PE_LOAD_SUCCESS or PE_DATABASE_CORRUPTED
+		SetComponentLastError(COMPONENT_PELOADER, peStatus);
+		
+		if (peStatus == PE_DATABASE_CORRUPTED)
+		{
+			SetComponentLastError(COMPONENT_DATABASE, DATABASE_CORRUPTED);
+			m_database.Clear();
+			return ANALYZER_DATABASE_LOAD_FAIL;
+		}
+
+		return status;
+	}
+
+	CAnalyzer::CAnalyzer() : m_peLoader()
 	{
 		m_loaded = false;
+		m_rebasedImagebase = 0x0;
+
+		m_componentError[COMPONENT_DATABASE] = DATABASE_LOAD_SUCCESS;
+		m_componentError[COMPONENT_PELOADER] = PE_LOAD_SUCCESS;
 	}
 
 	bool CAnalyzer::IsLoaded()
@@ -32,32 +69,40 @@ namespace oacore
 		m_rebasedImagebase = imagebase;
 	}
 
-	ANALYZER_LOAD_STATUS CAnalyzer::LoadFile(const std::string& path)
+	unsigned int CAnalyzer::GetComponentLastError(_OacoreComponent component)
 	{
-		ANALYZER_LOAD_STATUS status = ANALYZER_LOAD_SUCCESS;
+		if (component >= COMPONENT_SIZE)
+			return -1;
+		return m_componentError[component];
+	}
 
-		m_loaded = true;
+	void CAnalyzer::SetComponentLastError(_OacoreComponent component, int error)
+	{
+		if (component >= COMPONENT_SIZE)
+			return;
+		m_componentError[component] = error;
+	}
 
-		/*
-		PE_LOAD_STATUS peLoadStatus = m_peLoader.LoadFile(path);
+	_AnalyzerLoadStatus CAnalyzer::LoadFile(const std::string& path)
+	{
+		_AnalyzerLoadStatus status = ANALYZER_LOAD_SUCCESS;
+		std::string extensionName = Utils::GetExtensionName(path);
 
-		if (peLoadStatus != PE_LOAD_SUCCESS)
+		if (extensionName == "exe" || extensionName == "dll")
+			status = _LoadPEFile(path);
+		else if (extensionName == "odb")
+			status = _LoadDatabaseFile(path);
+		else
+			return ANALYZER_UNKNOWN_FILE_TYPE;
+
+		m_database.SetValue<std::string>("Analyzer.BasicInformation.DatabaseFilePath", Utils::GetPathWithoutExtension(path) + ".odb");
+
+		if (status != ANALYZER_LOAD_SUCCESS)
 		{
-			switch (peLoadStatus)
-			{
-			case PE_FILE_DOESNT_EXIST:
-				return ANALYZER_FILE_DOESNT_EXIST;
-			case PE_NOT_A_PE_FILE:
-				return ANALYZER_NOT_A_PE_FILE;
-			case PE_NOT_X64:
-				return ANALYZER_PE_NOT_X64;
-			default:
-				return ANALYZER_PE_LOAD_FAIL;
-			}
+			return status;
 		}
 
-		RebaseProgram(m_peLoader.GetOptionalHeader()->ImageBase); */
-
+		m_loaded = true;
 		return status;
 	}
 

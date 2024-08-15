@@ -11,7 +11,12 @@ namespace oaui
 
 		if (node->ChildNode() == nullptr)
 		{
-			ImGui::BulletText("%s: %s", node->Name().c_str(), node->Text().c_str());
+
+			ImGui::BulletText("%s", node->Name().c_str());
+			ImGui::SameLine();
+			ImGui::TextColored(ImColor(IM_COL32(238, 118, 33, 255)), " => ");
+			ImGui::SameLine();
+			ImGui::TextColored(ImColor(IM_COL32(0, 0, 0, 255)), "%s", node->Text().c_str());
 			return;
 		}
 
@@ -34,12 +39,12 @@ namespace oaui
 
 	void DatabaseViewerWindow::Render(UI* ui)
 	{
-		State* state = ui->GetState();
-		oacore::Database* database = state->GetDatabase();
+		State& state = State::GetInstance();
+		oacore::Database* database = state.GetDatabase();
 		oacore::DatabaseNode* root = database->GetRoot();
 		oacore::DatabaseNode* curNode = root->ChildNode();
 
-		if (!state->GetAnalyzer()->IsLoaded())
+		if (!state.GetAnalyzer()->IsLoaded())
 			return;
 
 		ImGui::Begin(u8"\uE7E8 Database viewer", &m_show, ImGuiWindowFlags_NoCollapse);

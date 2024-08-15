@@ -27,8 +27,10 @@ namespace oaui
 		void Save(const std::string& path = "", bool reset = false);
 		void Reset(); // Close analyzer and create a new one
 
-		bool Initialize(HWND hwnd);
+		bool Initialize(HWND hwnd, struct ID3D11Device* device);
 		void Shutdown();
+
+		static State& GetInstance();
 	};
 }
 
