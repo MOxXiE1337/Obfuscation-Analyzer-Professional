@@ -42,6 +42,7 @@ namespace oaui
     {
         m_loadDraggedFile = true;
         m_draggedFilePath = path;
+        m_shouldExitProgram = false;
     }
 
     void SavingWindow::Render(UI* ui)
@@ -78,20 +79,23 @@ namespace oaui
         if (ImGui::Button("OK"))
         {
             if (save)
-                State::GetInstance().Save("", true);
-            else
-                State::GetInstance().Reset();
+                State::GetInstance().Save(""); 
             
-            Close();
-
+            State::GetInstance().Reset();
+            
             
             if (m_openOpenFileDialog)
             {
-                std::string path{};
-                if (Utils::SelectFile(ui->GetHWND(), "Executable File (*.exe *.dll)\0*.exe;*.dll\0Database File (*.odb)\0*.odb\0\0", path))
-                {
-                    State::GetInstance().LoadFile(path);
-                }
+                // prevent from choking GUI... (select file)                  
+                Utils::ThreadExecutor([ui]()
+                    {
+                        std::string path{};
+                        if (Utils::SelectFile(ui->GetHWND(), "Executable File (*.exe *.dll)\0*.exe;*.dll\0Database File (*.odb)\0*.odb\0\0", path))
+                        {
+                            State::GetInstance().LoadFile(path);
+                        }
+                    }, &State::GetInstance().IsLoadOrSaving());
+                
                 m_openOpenFileDialog = false;
             }
 
@@ -103,12 +107,20 @@ namespace oaui
                 m_loadDraggedFile = false;
             } 
 
-            if (m_shouldExitProgram = true)
+            if (m_shouldExitProgram == true)
             {
-                ui->Log("Exiting...");
+                // To fix GUI log logical error                 
+                Utils::ThreadExecutor executor(
+                    [ui]() {
+                    ui->Log("Exiting...");
+                    SetTimer(ui->GetHWND(), 1, 800, ExitOnTimer);
+                    },
+                    &State::GetInstance().IsLoadOrSaving());
+
                 m_isProgramExiting = true;
-                SetTimer(ui->GetHWND(), 1, 1000, ExitOnTimer);
             }
+
+            Close();
         }
 
         ImGui::SameLine();

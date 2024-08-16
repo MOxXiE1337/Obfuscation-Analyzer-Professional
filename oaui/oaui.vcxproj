@@ -71,14 +71,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)oacore;$(SolutionDir)imgui;$(ProjectDir);$(ProjectDir)cpp-base64;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)zydis;$(SolutionDir)oacore;$(SolutionDir)imgui;$(ProjectDir);$(ProjectDir)cpp-base64;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)out\lib\$(Platform);$(DXSDK_DIR)Lib\$(Platform);$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)out\bin\$(Platform)\</OutDir>
     <TargetName>Obfuscation Analyzer Professional</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)oacore;$(SolutionDir)imgui;$(ProjectDir);$(ProjectDir)cpp-base64;$(DXSDK_DIR)Include;$(SolutionDir)tinyxml2;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)zydis;$(SolutionDir)oacore;$(SolutionDir)imgui;$(ProjectDir);$(ProjectDir)cpp-base64;$(DXSDK_DIR)Include;$(SolutionDir)tinyxml2;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)out\lib\$(Platform);$(DXSDK_DIR)Lib\$(Platform);$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)out\bin\$(Platform)\</OutDir>
@@ -124,7 +124,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;winmm.lib;oacore.lib;imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dx11.lib;winmm.lib;oacore.lib;imgui.lib;zydis.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -147,7 +147,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;winmm.lib;oacore.lib;imgui.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dx11.lib;winmm.lib;oacore.lib;imgui.lib;zydis.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -174,6 +174,7 @@
     <ClInclude Include="oaui\Core\UI\UI.h" />
     <ClInclude Include="oaui\Core\UI\Window.h" />
     <ClInclude Include="oaui\Core\UI\Windows\DatabaseViewerWindow\DatabaseViewerWindow.h" />
+    <ClInclude Include="oaui\Core\UI\Windows\DisassemblerWindow\DisassemblerWindow.h" />
     <ClInclude Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.h" />
     <ClInclude Include="oaui\Core\UI\MenuBar.h" />
     <ClInclude Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.h" />

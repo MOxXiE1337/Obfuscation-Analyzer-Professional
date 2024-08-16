@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <regex>
 #include <mutex>
 #include <thread>
@@ -15,4 +16,4 @@
 
 namespace oaui
 {
-	}
+}

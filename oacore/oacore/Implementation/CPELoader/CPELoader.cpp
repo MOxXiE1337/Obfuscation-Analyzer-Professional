@@ -16,7 +16,7 @@ namespace oacore
 
         if (!database->GetValue("PELoader.BasicInformation.FullFilePath", m_fileFullPath))
         {
-            Error("[ CPELoader ] Failed to read \"PELoader.BasicInformation.FullFilePath\" from database");
+            Record(2, "[ CPELoader ] Failed to read \"PELoader.BasicInformation.FullFilePath\" from database");
             return PE_DATABASE_CORRUPTED;
         }
         

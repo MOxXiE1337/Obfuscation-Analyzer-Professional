@@ -18,19 +18,19 @@
     <ClInclude Include="oacore\oacore.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Interfaces\ISimulator.h">
+    <ClInclude Include="oacore\Interface\ISimulator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Interfaces\IAnalyzer.h">
+    <ClInclude Include="oacore\Interface\IAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Implementation\CAnalyzer.h">
+    <ClInclude Include="oacore\Implementation\CAnalyzer\CAnalyzer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Interfaces\IDisassembler.h">
+    <ClInclude Include="oacore\Interface\IDisassembler.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Implementation\CDisassembler.h">
+    <ClInclude Include="oacore\Implementation\CDisassembler\CDisassembler.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="oacore\Common\Database.h">
@@ -42,10 +42,13 @@
     <ClInclude Include="External\cpp-base64\cpp-base64.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Interfaces\IPELoader.h">
+    <ClInclude Include="oacore\Interface\IPELoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="oacore\Implementation\CPELoader.h">
+    <ClInclude Include="oacore\Implementation\CPELoader\CPELoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="oacore\Common\Instruction.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,10 +56,10 @@
     <ClCompile Include="oacore\oacore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oacore\Implementation\CAnalyzer.cpp">
+    <ClCompile Include="oacore\Implementation\CAnalyzer\CAnalyzer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oacore\Implementation\CDisassembler.cpp">
+    <ClCompile Include="oacore\Implementation\CDisassembler\CDisassembler.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="oacore\Common\DatabaseNode.cpp">
@@ -74,7 +77,7 @@
     <ClCompile Include="oacore\Utils\String.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="oacore\Implementation\CPELoader.cpp">
+    <ClCompile Include="oacore\Implementation\CPELoader\CPELoader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

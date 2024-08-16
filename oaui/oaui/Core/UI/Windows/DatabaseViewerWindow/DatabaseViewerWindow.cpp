@@ -40,7 +40,8 @@ namespace oaui
 	void DatabaseViewerWindow::Render(UI* ui)
 	{
 		State& state = State::GetInstance();
-		oacore::Database* database = state.GetDatabase();
+		std::shared_ptr<oacore::IAnalyzer> analyzer = state.GetAnalyzer();
+		oacore::Database* database = analyzer->GetDatabase();
 		oacore::DatabaseNode* root = database->GetRoot();
 		oacore::DatabaseNode* curNode = root->ChildNode();
 

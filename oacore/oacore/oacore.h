@@ -1,11 +1,14 @@
 #pragma once
-
+#include <array>
 #include <mutex>
 #include <shared_mutex>
+#include <memory>
 #include <regex>
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <unordered_map>
+#include <functional>
 
 #include <Windows.h>
 
@@ -29,9 +32,7 @@ namespace oacore
 
 	typedef void(*InfoRecordFn)(const char*);
 
-	extern InfoRecordFn Log;
-	extern InfoRecordFn Warn;
-	extern InfoRecordFn Error;
+	void Record(int id, const char* text, ...);
 	InfoRecordFn OACORE_API SetRecordHook(int id, InfoRecordFn hook);
 }
 

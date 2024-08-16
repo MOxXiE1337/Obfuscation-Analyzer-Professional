@@ -63,33 +63,21 @@ namespace oaui
 		m_hwnd = NULL;
 		m_textures = {};
 
-		m_mainMenuBar = new MainMenuBar{};
-		m_dockspaceWindow = new DockspaceWindow{};
-		m_databaseViewerWindow = new DatabaseViewerWindow{};
-		m_notepadWindow = new NotepadWindow{};
-		m_outputWindow = new OutputWindow{};
+		m_mainMenuBar = std::make_unique<MainMenuBar>();
+		m_dockspaceWindow = std::make_unique<DockspaceWindow>();
+		m_databaseViewerWindow = std::make_unique<DatabaseViewerWindow>();
+		m_notepadWindow = std::make_unique<NotepadWindow>();
+		m_outputWindow = std::make_unique<OutputWindow>();
 
-		m_savingWindow = new SavingWindow{};
+		m_savingWindow = std::make_unique<SavingWindow>();
 
 #ifndef NDEBUG
-		m_testingWindow = new TestingWindow{};
+			m_testingWindow = std::make_unique <TestingWindow>();
 #endif
 	}
 
 	UI::~UI()
 	{
-		delete m_mainMenuBar;
-		delete m_dockspaceWindow;
-		delete m_databaseViewerWindow;
-		delete m_notepadWindow;
-		delete m_outputWindow;
-
-		delete m_savingWindow;
-
-
-#ifndef NDEBUG
-		delete m_testingWindow;
-#endif
 	}
 
 	bool UI::_InitializeStyle()
@@ -246,7 +234,7 @@ namespace oaui
 		return;
 	}
 
-	ImTextureID UI::GetTexture(const std::string name)
+	ImTextureID UI::GetTexture(const std::string& name)
 	{
 		if (m_textures.count(name) == 0)
 			return ImTextureID{  };
@@ -258,15 +246,15 @@ namespace oaui
 		switch (id)
 		{
 		case DOCKSPACE_WINDOW:
-			return m_dockspaceWindow;
+			return m_dockspaceWindow.get();
 		case DATABASE_VIEWER_WINDOW:
-			return m_databaseViewerWindow;
+			return m_databaseViewerWindow.get();
 		case NOTEPAD_WINDOW:
-			return m_notepadWindow;
+			return m_notepadWindow.get();
 		case OUTPUT_WINDOW:
-			return m_outputWindow;
+			return m_outputWindow.get();
 		case SAVING_WINDOW:
-			return m_savingWindow;
+			return m_savingWindow.get();
 		default:
 			return nullptr;
 		}
@@ -277,7 +265,7 @@ namespace oaui
 		
 		va_list ap;
 		va_start(ap, text);
-		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(ImGui::GetStyleColorVec4(ImGuiCol_Text), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow.get())->OutputMessage(ImGui::GetStyleColorVec4(ImGuiCol_Text), text, ap);
 		va_end(ap);
 	}
 
@@ -285,7 +273,7 @@ namespace oaui
 	{
 		va_list ap;
 		va_start(ap, text);
-		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 138, 37, 255), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow.get())->OutputMessage(IM_COL32(255, 138, 37, 255), text, ap);
 		va_end(ap);
 	}
 
@@ -293,24 +281,24 @@ namespace oaui
 	{
 		va_list ap;
 		va_start(ap, text);
-		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 0, 0, 255), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow.get())->OutputMessage(IM_COL32(255, 0, 0, 255), text, ap);
 		va_end(ap);
 	}
 
 	void UI::LogV(const char* text, va_list ap)
 	{
 
-		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(ImGui::GetStyleColorVec4(ImGuiCol_Text), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow.get())->OutputMessage(ImGui::GetStyleColorVec4(ImGuiCol_Text), text, ap);
 	}
 
 	void UI::WarnV(const char* text, va_list ap)
 	{
-		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 138, 37, 255), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow.get())->OutputMessage(IM_COL32(255, 138, 37, 255), text, ap);
 	}
 
 	void UI::ErrorV(const char* text, va_list ap)
 	{
-		reinterpret_cast<OutputWindow*>(m_outputWindow)->OutputMessage(IM_COL32(255, 0, 0, 255), text, ap);
+		reinterpret_cast<OutputWindow*>(m_outputWindow.get())->OutputMessage(IM_COL32(255, 0, 0, 255), text, ap);
 	}
 
 	void UI::Render()

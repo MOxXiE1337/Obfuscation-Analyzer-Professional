@@ -163,7 +163,7 @@ namespace oacore
 			curNode = curNode->NextSiblingNode();
 		}
 
-		if (!doc.SaveFile(path.c_str()))
+		if (doc.SaveFile(path.c_str()) != XML_SUCCESS)
 			return DATABASE_SAVE_TO_FILE_FAIL;
 		return DATABASE_SAVE_SUCCESS;
 	}
@@ -212,6 +212,7 @@ namespace oacore
 		{
 			if (result == OACORE_DATABASE_ERROR_STRING)
 				return false;
+			value = result;
 			return true;
 		}
 		if constexpr (std::is_same<T, BinaryData>::value)

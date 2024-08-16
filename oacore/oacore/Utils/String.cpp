@@ -129,7 +129,7 @@ namespace oacore
 		std::string GetPathWithoutExtension(const std::string& path)
 		{
 			std::string::size_type pos = path.find_last_of('.');
-			return path.substr(0, pos - 1);
+			return path.substr(0, pos);
 		}
 
 		std::string GetPathDirectory(const std::string& path)

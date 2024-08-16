@@ -1,7 +1,7 @@
 #pragma once
 
-#include "oacore/Interfaces/IPELoader.h"
-#include "oacore/Interfaces/IAnalyzer.h"
+#include "oacore/Interface/IPELoader.h"
+#include "oacore/Interface/IAnalyzer.h"
 
 namespace oacore
 {
@@ -15,5 +15,6 @@ namespace oacore
 		~CPELoader();
 
 		_PELoadStatus LoadFromDatabase(IAnalyzer* analyzer);
+		_PELoadStatus LoadFromPEFile(IAnalyzer* analyzer, const std::string& path);
 	};
 }

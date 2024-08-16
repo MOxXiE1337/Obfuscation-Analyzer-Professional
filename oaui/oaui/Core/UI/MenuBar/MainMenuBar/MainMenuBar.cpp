@@ -9,7 +9,7 @@ namespace oaui
 {
     void MainMenuBar::Render(UI* ui)
     {
-        oacore::IAnalyzer* analyzer = State::GetInstance().GetAnalyzer();
+        std::shared_ptr<oacore::IAnalyzer> analyzer = State::GetInstance().GetAnalyzer();
 
         if (ImGui::BeginMainMenuBar())
         {

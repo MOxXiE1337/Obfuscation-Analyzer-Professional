@@ -30,16 +30,16 @@ namespace oaui
 		std::unordered_map<std::string, ImTextureID> m_textures;
 	private:
 
-		MenuBar* m_mainMenuBar;
-		Window* m_dockspaceWindow;
-		Window* m_databaseViewerWindow;
-		Window* m_notepadWindow;
-		Window* m_outputWindow;
+		std::unique_ptr<MenuBar> m_mainMenuBar;
+		std::unique_ptr<Window> m_dockspaceWindow;
+		std::unique_ptr<Window> m_databaseViewerWindow;
+		std::unique_ptr<Window> m_notepadWindow;
+		std::unique_ptr<Window> m_outputWindow;
 
-		Window* m_savingWindow;
+		std::unique_ptr<Window> m_savingWindow;
 
 #ifndef NDEBUG
-		Window* m_testingWindow;
+		std::unique_ptr<Window> m_testingWindow;
 #endif
 
 	private:
@@ -56,7 +56,7 @@ namespace oaui
 		~UI();
 
 		HWND GetHWND() { return m_hwnd; }
-		ImTextureID GetTexture(const std::string);
+		ImTextureID GetTexture(const std::string&);
 		Window* GetWindow(_WindowId id);
 
 		void Log(const char* text, ...);

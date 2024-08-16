@@ -9,6 +9,8 @@ namespace oacore
 	{
 		_AnalyzerLoadStatus status = ANALYZER_LOAD_SUCCESS;
 
+		m_database.SetValue<std::string>("Analyzer.BasicInformation.DatabaseFilePath", Utils::GetPathWithoutExtension(path) + ".odb");
+
 		return status;
 	}
 
@@ -38,28 +40,35 @@ namespace oacore
 	CAnalyzer::CAnalyzer() : m_peLoader()
 	{
 		m_loaded = false;
+		m_callback = {nullptr};
 		m_rebasedImagebase = 0x0;
 
 		m_componentError[COMPONENT_DATABASE] = DATABASE_LOAD_SUCCESS;
 		m_componentError[COMPONENT_PELOADER] = PE_LOAD_SUCCESS;
 	}
 
-	bool CAnalyzer::IsLoaded()
+	CAnalyzer::~CAnalyzer()
+	{
+		if (m_callback)
+			m_callback(this);
+	}
+
+	bool CAnalyzer::IsLoaded() const
 	{
 		return m_loaded;
 	}
 
-	IDisassembler* CAnalyzer::GetDisassembler()
+	IDisassembler* CAnalyzer::GetDisassembler() 
 	{
 		return &m_disassembler;
 	}
 
-	Database* CAnalyzer::GetDatabase()
+	Database* CAnalyzer::GetDatabase() 
 	{
 		return &m_database;
 	}
 
-	uintptr_t CAnalyzer::GetImagebase()
+	uintptr_t CAnalyzer::GetImagebase() const
 	{
 		return m_rebasedImagebase;
 	}
@@ -69,7 +78,7 @@ namespace oacore
 		m_rebasedImagebase = imagebase;
 	}
 
-	unsigned int CAnalyzer::GetComponentLastError(_OacoreComponent component)
+	unsigned int CAnalyzer::GetComponentLastError(_OacoreComponent component) const
 	{
 		if (component >= COMPONENT_SIZE)
 			return -1;
@@ -88,6 +97,8 @@ namespace oacore
 		_AnalyzerLoadStatus status = ANALYZER_LOAD_SUCCESS;
 		std::string extensionName = Utils::GetExtensionName(path);
 
+		Record(0, "Loading %s...", path.c_str());
+
 		if (extensionName == "exe" || extensionName == "dll")
 			status = _LoadPEFile(path);
 		else if (extensionName == "odb")
@@ -95,7 +106,6 @@ namespace oacore
 		else
 			return ANALYZER_UNKNOWN_FILE_TYPE;
 
-		m_database.SetValue<std::string>("Analyzer.BasicInformation.DatabaseFilePath", Utils::GetPathWithoutExtension(path) + ".odb");
 
 		if (status != ANALYZER_LOAD_SUCCESS)
 		{
@@ -106,18 +116,39 @@ namespace oacore
 		return status;
 	}
 
-	OACORE_API IAnalyzer* oacore::CreateAnalyzer()
+	_AnalyzerSaveStatus CAnalyzer::SaveFile(const std::string& path)
 	{
-		return new CAnalyzer{};
+		_AnalyzerSaveStatus status = ANALYZER_SAVE_SUCCESS;
+		std::string realPath{ path };
+
+		if (path.empty())
+			m_database.GetValue("Analyzer.BasicInformation.DatabaseFilePath", realPath);
+
+		if (realPath.empty())
+		{
+			Record(1, "The path is empty! Please rechoose a path to save the database\n", realPath.c_str());
+			return ANALYZER_EMPTY_PATH;
+		}
+
+		Record(0, "Saving database to %s...", realPath.c_str());
+
+		if (m_database.SaveFile(realPath) != DATABASE_SAVE_SUCCESS)
+		{
+			SetComponentLastError(COMPONENT_DATABASE, DATABASE_SAVE_TO_FILE_FAIL);
+			return ANALYZER_SAVE_FAIL;
+		}
+
+		return status;
 	}
 
-	OACORE_API VOID CloseAnalyzer(IAnalyzer*& analyzer)
+	void CAnalyzer::_SetDestructCallback(const std::function<void(IAnalyzer*)>& callback)
 	{
-		if (analyzer)
-		{
-			delete analyzer;
-			analyzer = nullptr;
-		}
+		m_callback = callback;
+	}
+
+	void OACORE_API CreateAnalyzer(std::shared_ptr<IAnalyzer>& ptr)
+	{
+		ptr = std::make_shared<CAnalyzer>();
 	}
 }
 

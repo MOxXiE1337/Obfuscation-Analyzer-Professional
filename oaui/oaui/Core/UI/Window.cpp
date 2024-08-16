@@ -10,13 +10,9 @@ namespace oaui
 	{
 		m_show = false;
 	}
-	bool Window::IsShowed()
+	bool Window::IsShowed() const
 	{
 		return m_show;
-	}
-	bool* Window::GetShowPointer()
-	{
-		return &m_show;
 	}
 }
 
