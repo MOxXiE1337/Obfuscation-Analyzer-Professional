@@ -1,443 +1,443 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
+    <Filter Include="Headers">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="资源文件">
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resources">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="builds\windows\ftdebug.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="builds\windows\ftsystem.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\autofit\autofit.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftbase.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftbbox.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftbdf.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftbitmap.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftcid.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftfstype.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftgasp.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftglyph.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftgxval.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftinit.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftmm.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftotval.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftpatent.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftpfr.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftstroke.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftsynth.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftwinfnt.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\bdf\bdf.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\bzip2\ftbzip2.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\cache\ftcache.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\cff\cff.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\cid\type1cid.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\gzip\ftgzip.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\lzw\ftlzw.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\pcf\pcf.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\pfr\pfr.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\psaux\psaux.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\pshinter\pshinter.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\psnames\psnames.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\raster\raster.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\sdf\sdf.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\sfnt\sfnt.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\smooth\smooth.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\truetype\truetype.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\type1\type1.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\type42\type42.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\winfonts\winfnt.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\base\fttype1.c">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="freetype.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="ft2build.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\ftconfig.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\ftheader.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\ftmodule.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\ftoption.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\ftstdlib.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\integer-types.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\mac-support.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\config\public-macros.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svbdf.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svcfftl.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svcid.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svfntfmt.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svgldict.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svgxval.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svkern.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svmetric.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svmm.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svotval.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svpfr.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svpostnm.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svprop.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svpscmap.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svpsinfo.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svsfnt.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svttcmap.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svtteng.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svttglyf.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\services\svwinfnt.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\autohint.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\cffotypes.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\cfftypes.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\compiler-macros.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftcalc.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftdebug.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftdrv.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftgloadr.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\fthash.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftmemory.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftobjs.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftpsprop.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftrfork.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftserv.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftstream.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\fttrace.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\ftvalid.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\psaux.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\pshints.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\sfnt.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\t1types.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\tttypes.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\internal\wofftypes.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\freetype.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftadvanc.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftbbox.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftbdf.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftbitmap.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftbzip2.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftcache.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftchapters.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftcid.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftcolor.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftdriver.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\fterrdef.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\fterrors.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftfntfmt.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftgasp.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftglyph.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftgxval.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftgzip.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftimage.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftincrem.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftlcdfil.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftlist.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftlogging.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftlzw.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftmac.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftmm.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftmodapi.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftmoderr.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftotval.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftoutln.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftparams.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftpfr.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftrender.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftsizes.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftsnames.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftstroke.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftsynth.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftsystem.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\fttrigon.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\fttypes.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ftwinfnt.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\t1tables.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\ttnameid.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\tttables.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="freetype\tttags.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\base\ftver.rc">
-      <Filter>资源文件</Filter>
+      <Filter>Resources</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

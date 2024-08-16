@@ -133,7 +133,10 @@ namespace oacore
 		if (error != XML_SUCCESS)
 			return DATABASE_XML_PARSE_FAIL;
 
-		_LoadXMLIntoDatabase(m_root, doc.RootElement());
+		if(doc.RootElement() == nullptr)
+			return DATABASE_XML_PARSE_FAIL;
+
+		_LoadXMLIntoDatabase(m_root, doc.RootElement()->FirstChildElement());
 
 		return status;
 	}
@@ -147,19 +150,21 @@ namespace oacore
 		XMLDeclaration* declaration = doc.NewDeclaration();
 		XMLComment* comment = doc.NewComment(" Obfuscation Analyzer Professional Database File ");
 		XMLText* newLineText = doc.NewText("\n");
+		XMLElement* rootElement = doc.NewElement("Database");
 		doc.InsertEndChild(declaration);
 		doc.InsertEndChild(comment);
 		doc.InsertEndChild(newLineText);
+		doc.InsertEndChild(rootElement);
 
 		oacore::DatabaseNode* curNode = m_root->ChildNode();
 		while(curNode)
 		{
-			XMLElement* newElement = doc.NewElement(curNode->Name().c_str());
+			XMLElement* newElement = rootElement->InsertNewChildElement(curNode->Name().c_str());
+
 			if (!curNode->Text().empty())
 				newElement->SetText(curNode->Text().c_str());
 
 			_BuildXMLTree(newElement, curNode->ChildNode());
-			doc.InsertEndChild(newElement);
 			curNode = curNode->NextSiblingNode();
 		}
 

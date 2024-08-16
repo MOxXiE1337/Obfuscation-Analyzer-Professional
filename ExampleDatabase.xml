@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Obfuscation Analyzer Professional Database File -->
+
+<PELoader>
+	<BasicInformation>
+		<FullFilePath>D:\source\cpp\HelloWorld\x64\Release\HelloWorld.exe</FullFilePath>
+	</BasicInformation>
+</PELoader>
+
+<Analyzer>
+	<BasicInformation>
+		<DatabaseFilePath>D:\source\Obfuscation Analyzer Professional\ExampleDatabase.odb</DatabaseFilePath>
+	</BasicInformation>
+</Analyzer>

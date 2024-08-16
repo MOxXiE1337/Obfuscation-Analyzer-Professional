@@ -1,102 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
+    <Filter Include="Headers">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\UI.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\Window.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\State\State.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\Windows\SavingWindow\SavingWindow.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Utils\Utils.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\Windows\DatabaseViewerWindow\DatabaseViewerWindow.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="oaui\Core\UI\Windows\TestingWindow\TestingWindow.cpp">
-      <Filter>源文件</Filter>
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oaui\oaui.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Resources\IconFont.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\State\State.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\UI.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\DockspaceWindow\DockspaceWindow.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Window.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\MenuBar.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\MenuBar\MainMenuBar\MainMenuBar.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\SavingWindow\SavingWindow.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Utils\Utils.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\OutputWindow\OutputWindow.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\NotepadWindow\NotepadWindow.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\DatabaseViewerWindow\DatabaseViewerWindow.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\TestingWindow\TestingWindow.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="oaui\Core\UI\Windows\DisassemblerWindow\DisassemblerWindow.h">
-      <Filter>头文件</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
