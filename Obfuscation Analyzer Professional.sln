@@ -24,7 +24,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "oaui", "oaui\oaui.vcxproj",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{59DC81E1-A739-4545-A62F-9C9E2B3D7A76}"
 	ProjectSection(SolutionItems) = preProject
-		path.txt = path.txt
+		ExampleDatabase.xml = ExampleDatabase.xml
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "freetype\freetype.vcxproj", "{32C6FDD7-9AC9-4EF3-A55F-B860B8E7E761}"
