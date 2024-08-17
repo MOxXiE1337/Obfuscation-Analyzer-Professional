@@ -91,7 +91,7 @@ This project is licensed under the [MIT License](LICENSE). Please refer to the `
 
 ## Contact
 
-- **Author**: [MOxXiE1337](938583253@qq.com)
+- **Author**: [MOxXiE1337]
 - **Project Homepage**: [Obfuscation Analyzer Professional](https://github.com/MOxXiE1337/Obfuscation-Analyzer-Professional)
 
 ## Additional Information
