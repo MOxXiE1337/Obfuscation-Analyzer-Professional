@@ -41,30 +41,32 @@ namespace oaui
                     }
                     else
                     {
+                        Utils::ThreadExecutor([ui, analyzer]() {
+                            std::string path{};
+                            if (Utils::SelectFile(ui->GetHWND(), "Executable File (*.exe *.dll)\0*.exe;*.dll\0Database File (*.odb)\0*.odb\0\0", path))
+                                State::GetInstance().LoadFile(path);
+                            },
+                            State::GetInstance().IsLoadOrSaving());
+                    }
+                }
+                if (ImGui::MenuItem(u8"\uE856 Save", nullptr, nullptr, analyzer->IsLoaded()))
+                {
+                    State::GetInstance().Save("");
+                }
+                if (ImGui::MenuItem(u8"      Save as...", nullptr, nullptr, analyzer->IsLoaded()))
+                {
+                    Utils::ThreadExecutor([ui, analyzer]() {
                         std::string path{};
-                        if (Utils::SelectFile(ui->GetHWND(), "Executable File (*.exe *.dll)\0*.exe;*.dll\0Database File (*.odb)\0*.odb\0\0", path))
+                        if (Utils::SelectFile(ui->GetHWND(), "Database File(*.odb)\0*.odb\0", path, OFN_PATHMUSTEXIST | OFN_EXPLORER))
                         {
-                            State::GetInstance().LoadFile(path);
+                            if (path.find(".odb") == std::string::npos)
+                                path += ".odb";
+                            State::GetInstance().Save(path);
                         }
-                    }
+                        },
+                        State::GetInstance().IsLoadOrSaving());
                 }
-                /*
-                if (ImGui::MenuItem(u8"\uE856 Save", nullptr, nullptr, Loader::GetInstance().IsLoaded()))
-                {
-                    Loader::GetInstance().Save();
-                }
-                if (ImGui::MenuItem(u8"      Save as...", nullptr, nullptr, Loader::GetInstance().IsLoaded()))
-                {
-                    std::string path = "";
-
-                    if (SelectFile("Database File(*.odb)\0*.odb\0", path, OFN_PATHMUSTEXIST | OFN_EXPLORER))
-                    {
-                        if (path.find(".odb") == std::string::npos)
-                            path += ".odb";
-                        Loader::GetInstance().Save(path);
-                    }
-                }
-                */
+                
                 ImGui::EndMenu();
             }
 

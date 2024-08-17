@@ -94,7 +94,7 @@ namespace oaui
                         {
                             State::GetInstance().LoadFile(path);
                         }
-                    }, &State::GetInstance().IsLoadOrSaving());
+                    }, State::GetInstance().IsLoadOrSaving());
                 
                 m_openOpenFileDialog = false;
             }
@@ -102,7 +102,11 @@ namespace oaui
             
             if (m_loadDraggedFile)
             {
-                State::GetInstance().LoadFile(m_draggedFilePath);
+                Utils::ThreadExecutor([&]()
+                    {
+                        State::GetInstance().LoadFile(m_draggedFilePath);
+                    },
+                    State::GetInstance().IsLoadOrSaving());
                 // m_draggedFilePath.clear();
                 m_loadDraggedFile = false;
             } 
@@ -110,12 +114,12 @@ namespace oaui
             if (m_shouldExitProgram == true)
             {
                 // To fix GUI log logical error                 
-                Utils::ThreadExecutor executor(
+                Utils::ThreadExecutor(
                     [ui]() {
                     ui->Log("Exiting...");
                     SetTimer(ui->GetHWND(), 1, 800, ExitOnTimer);
                     },
-                    &State::GetInstance().IsLoadOrSaving());
+                    State::GetInstance().IsLoadOrSaving());
 
                 m_isProgramExiting = true;
             }

@@ -26,10 +26,10 @@ namespace oaui
 		UI* GetUI();
 		
 		std::shared_ptr<oacore::IAnalyzer> GetAnalyzer();
-		std::mutex& IsLoadOrSaving(); // For GUI sync
+		std::mutex* IsLoadOrSaving(); // For GUI sync
 
-		void LoadFile(const std::string& path, bool createNewThread = true);
-		void Save(const std::string& path = "", bool createNewThread = true);
+		void LoadFile(const std::string& path);
+		void Save(const std::string& path = "");
 		void Reset(); // Close analyzer and create a new one
 
 		bool Initialize(HWND hwnd, struct ID3D11Device* device);

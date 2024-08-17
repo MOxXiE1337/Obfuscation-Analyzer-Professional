@@ -138,6 +138,8 @@ namespace oacore
 			return ANALYZER_SAVE_FAIL;
 		}
 
+		Record(0, "Database has been written to disk");
+
 		return status;
 	}
 

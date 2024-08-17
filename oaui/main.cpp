@@ -236,7 +236,11 @@ LRESULT WINAPI wndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             }
             else
             {
-                oaui::State::GetInstance().LoadFile(filePath);
+                oaui::Utils::ThreadExecutor([filePath]()
+                    {
+                        oaui::State::GetInstance().LoadFile(filePath);
+                    },
+                    oaui::State::GetInstance().IsLoadOrSaving());
             }
         }
 
